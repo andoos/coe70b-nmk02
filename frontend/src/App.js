@@ -1,6 +1,7 @@
 import './App.css';
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import LoginScreen from './LoginScreen/LoginScreen';
 
 const Button = styled.button`
   background-color: rgb(88, 85, 95);
@@ -16,16 +17,22 @@ const Button = styled.button`
 `;
 
 class App extends Component {
+  state = {
+    loginCredentials: {username: 'username', password: 'password'},
+    isAuthenticated: false,
+  }
+
   render() {
     return (
       <div className = 'App'>
-        <h1>NMK02: Contact Tracing Wristband with Temperature Sensor and Cloud-based Monitoring Dashboard</h1>
+        {/* <h1>NMK02: Contact Tracing Wristband with Temperature Sensor and Cloud-based Monitoring Dashboard</h1>
         <Button onClick = {update}>
           Refresh
         </Button>
         <Button onClick = {logout}>
           logout
-        </Button>
+        </Button> */}
+        <LoginScreen credentials={this.state.loginCredentials}></LoginScreen>
       </div>
     );
   }
