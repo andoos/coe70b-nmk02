@@ -24,6 +24,7 @@ We suggest that you begin by typing (Brings up development server):
     Removes this tool and copies build dependencies, configuration files
     and scripts into the app directory. If you do this, you can’t go back!
 
-Images and fonts related to components will be stored under frontend/src/assets 
 
-Components should be in their own folder under frontend/src and this folder should include the javascript and css files
+- Images and fonts related to components will be stored under frontend/src/assets 
+
+- Components should be in their own folder under frontend/src and this folder should include the javascript and css files
