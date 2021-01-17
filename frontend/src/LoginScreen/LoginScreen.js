@@ -34,7 +34,9 @@ const loginScreen = (props) => {
           <label>Password:</label>
           <input type="text"></input>
         </div>
-          <div><button type="button">Submit</button></div>
+        <div>
+          <button type="button">Submit</button>
+        </div>
       </div>
     </LoginScreen>
   );

@@ -1,3 +1,4 @@
+import LogoutStyles from "./LogoutButton.module.css";
 import React from "react";
 import styled from "styled-components";
 
@@ -21,7 +22,7 @@ const doLogout = () => {
 
 function LogoutButton() {
   return (
-    <div className="LogoutButton">
+    <div className={LogoutStyles.LogoutButton}>
       <Button onClick={doLogout}>Log Out</Button>
     </div>
   );
