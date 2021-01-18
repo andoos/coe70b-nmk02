@@ -6,24 +6,9 @@ Requirements
 
 Created the app using this [repo](https://github.com/facebook/create-react-app)
 
-We suggest that you begin by typing (Brings up development server):
-
+How to start the development server:
   cd frontend
   npm start
-
-  npm start
-    Starts the development server.
-
-  npm run build
-    Bundles the app into static files for production.
-
-  npm test
-    Starts the test runner.
-
-  npm run eject
-    Removes this tool and copies build dependencies, configuration files
-    and scripts into the app directory. If you do this, you can’t go back!
-
 
 - Images and fonts related to components will be stored under frontend/src/assets 
 
