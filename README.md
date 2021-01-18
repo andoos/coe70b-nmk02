@@ -9,6 +9,7 @@ Created the app using this [repo](https://github.com/facebook/create-react-app)
 How to start the development server:
 
   cd frontend
+  
   npm start
 
 - Images and fonts related to components will be stored under frontend/src/assets 
