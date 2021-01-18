@@ -7,6 +7,7 @@ Requirements
 Created the app using this [repo](https://github.com/facebook/create-react-app)
 
 How to start the development server:
+
   cd frontend
   npm start
 
