@@ -1,8 +1,8 @@
 import React from "react";
 import loginStyles from "./LoginScreen.module.css";
 import styled from "styled-components";
-import background from "../Assets/Images/loginBackground.png";
-import defaultUser from "../Assets/Images/defaultUser.png";
+import background from "../../assets/images/loginBackground.png";
+import defaultUser from "../../assets/images/defaultUser.png";
 
 const loginScreen = (props) => {
   const LoginScreen = styled.div`
