@@ -3,9 +3,10 @@ import React from "react";
 import { Container, Row, Col } from "reactstrap";
 
 import LoginScreen from "./components/LoginScreen/LoginScreen.js";
-import UpdateButton from "./components/UpdateButton/UpdateButton.js";
-import LogoutButton from "./components/LogoutButton/LogoutButton.js";
+import Sidebar from "./components/Sidebar/Sidebar.js";
+import AdminHeader from "./components/AdminHeader/AdminHeader.js";
 import DataTable from "./components/DataTable/DataTable.js";
+import BarGraph from "./components/BarGraph/BarGraph.js";
 
 import "./assets/css/App.css";
 import BlackDashboardStyles from "./assets/css/black-dashboard-react.css";
@@ -19,14 +20,17 @@ function App() {
   return (
     <div className="App">
       {/* <LoginScreen credentials={this.state.loginCredentials}></LoginScreen> */}
-      <div>
-        <h1>Administrator's Dashboard</h1>
-        <UpdateButton /> <LogoutButton />
-      </div>
+      <AdminHeader></AdminHeader>
       <Container>
         <Row>
-          <Col><DataTable></DataTable><DataTable></DataTable></Col>
-          <Col><DataTable></DataTable><DataTable></DataTable></Col>
+          <Col lg="=6">
+            <DataTable></DataTable>
+            <DataTable></DataTable>
+          </Col>
+          <Col lg="6">
+            <DataTable></DataTable>
+            <BarGraph></BarGraph>
+          </Col>
         </Row>
       </Container>
     </div>
