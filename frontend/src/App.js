@@ -21,13 +21,13 @@ function App() {
     <div className="App">
       {/* <LoginScreen credentials={this.state.loginCredentials}></LoginScreen> */}
       <AdminHeader></AdminHeader>
-      <Container>
+      <Container fluid>
         <Row>
-          <Col lg="=6">
+          <Col>
             <DataTable></DataTable>
             <DataTable></DataTable>
           </Col>
-          <Col lg="6">
+          <Col>
             <DataTable></DataTable>
             <BarGraph></BarGraph>
           </Col>
