@@ -2,10 +2,10 @@ import React from "react";
 
 import { Row, Navbar, NavbarBrand, Container } from "reactstrap";
 
-import UpdateButton from "../../components/UpdateButton/UpdateButton.js";
-import LogoutButton from "../../components/LogoutButton/LogoutButton.js";
+import UpdateButton from "../UpdateButton/UpdateButton.js";
+import LogoutButton from "../LogoutButton/LogoutButton.js";
 
-function AdminHeader() {
+function AdminNavBar() {
   return (
     <div className="DashboardHeader">
       <Navbar expand="lg">
@@ -23,4 +23,4 @@ function AdminHeader() {
   );
 }
 
-export default AdminHeader;
+export default AdminNavBar;
