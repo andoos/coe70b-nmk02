@@ -2,8 +2,7 @@ import React from "react";
 
 import { Container, Row, Col } from "reactstrap";
 
-import AdminDashboard from "./views/AdminDashboard.js"
-
+import AdminDashboard from "./views/AdminDashboard.jsx";
 
 import "./assets/css/App.css";
 import BlackDashboardStyles from "./assets/css/black-dashboard-react.css";

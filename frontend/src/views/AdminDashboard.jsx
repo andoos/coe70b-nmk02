@@ -2,9 +2,9 @@ import React from "react";
 
 import { Container, Row, Col } from "reactstrap";
 
-import AdminNavBar from "../components/AdminNavBar/AdminNavBar.js";
-import DataTable from "../components/DataTable/DataTable.js";
-import BarGraph from "../components/BarGraph/BarGraph.js";
+import AdminNavBar from "../components/AdminNavBar/AdminNavBar.jsx";
+import DataTable from "../components/DataTable/DataTable.jsx";
+import BarGraph from "../components/BarGraph/BarGraph.jsx";
 
 //import "./assets/css/App.css";
 //import BlackDashboardStyles from "./assets/css/black-dashboard-react.css";
@@ -21,7 +21,7 @@ function AdminDashboard() {
           </Col>
           <Col>
             <DataTable></DataTable>
-            <BarGraph></BarGraph>
+            <BarGraph style={{width: "100%"}}></BarGraph>
           </Col>
         </Row>
       </Container>
