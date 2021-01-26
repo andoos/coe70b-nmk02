@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, CardDeck, CardColumns } from "reactstrap";
 
 import AdminNavBar from "../components/AdminNavBar/AdminNavBar.jsx";
 import DataTable from "../components/DataTable/DataTable.jsx";
@@ -12,19 +12,29 @@ import BarGraph from "../components/BarGraph/BarGraph.jsx";
 
 function AdminDashboard() {
   return (
-      <Container fluid>
-          <AdminNavBar></AdminNavBar>
-        <Row>
-          <Col>
-            <DataTable></DataTable>
-            <DataTable></DataTable>
-          </Col>
-          <Col>
-            <DataTable></DataTable>
-            <BarGraph style={{width: "100%"}}></BarGraph>
-          </Col>
-        </Row>
-      </Container>
+    <Container fluid>
+      <AdminNavBar></AdminNavBar>
+      <li></li>
+      <Row>
+        <Col>
+          <DataTable />
+        </Col>
+        <Col>
+          <DataTable />
+        </Col>
+        <Col>
+          <DataTable />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <BarGraph />
+        </Col>
+        <Col>
+          <BarGraph />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

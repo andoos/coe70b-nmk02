@@ -5,9 +5,9 @@ import { Container, Row, Col } from "reactstrap";
 
 import AdminDashboard from "./views/AdminDashboard.jsx";
 
-import "./Assets/css/App.css";
-import BlackDashboardStyles from "./Assets/css/black-dashboard-react.css";
-import NucleoIcons from "./Assets/css/nucleo-icons.css";
+import "./assets/css/App.css";
+import BlackDashboardStyles from "./assets/css/black-dashboard-react.css";
+import NucleoIcons from "./assets/css/nucleo-icons.css";
 
 import LoginScreen from './views/LoginScreen/LoginScreen.jsx'
 

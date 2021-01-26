@@ -11,7 +11,10 @@ function AdminNavBar() {
     <div className="navbar-dark">
       <Navbar expand="lg" color="dark">
         <Container fluid>
-          <span className="navbar-text"> Administrator's Dashboard</span>
+          <span className="navbar-text" style={{ fontSize: "20px" }}>
+            {" "}
+            Administrator's Dashboard
+          </span>
           <div>
             <SettingsButton />
             <UpdateButton />

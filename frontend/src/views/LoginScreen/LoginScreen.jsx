@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import loginStyles from "./LoginScreen.module.css";
 import styled from "styled-components";
-import background from "../../Assets/Images/loginBackground.jpg";
-import defaultUser from "../../Assets/Images/defaultUser.png";
+import background from "../../assets/images/loginBackground.jpg";
+import defaultUser from "../../assets/images/defaultUser.png";
 import { Switch, Redirect } from "react-router-dom";
 
-import {FormGroup, Label, Input, Card, CardBody, Button } from "reactstrap";
+import { FormGroup, Label, Input, Card, CardBody, Button } from "reactstrap";
 
 const LoginScreen = (props) => {
   const LoginScreen = styled.div`
@@ -63,7 +63,9 @@ const LoginScreen = (props) => {
             <input autocomplete="off" id="password" type="password"></input>
           </div>
           <div>
-            <Button color="info" onClick={Authenticate}>Login</Button>
+            <Button color="info" onClick={Authenticate}>
+              Login
+            </Button>
             {/* <button type="button" onClick={Authenticate}>
               Login
             </button> */}

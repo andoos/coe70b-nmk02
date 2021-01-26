@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Bar } from "react-chartjs-2";
-import { Card, CardBody, CardHeader, CardTitle } from "reactstrap";
+import { Card, CardBody, CardHeader, CardTitle, Container } from "reactstrap";
 
 import {
   chartExample1,
