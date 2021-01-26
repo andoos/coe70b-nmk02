@@ -1,8 +1,15 @@
-import "./App.css";
 import React from "react";
-import UpdateButton from "./UpdateButton/UpdateButton";
-import LogoutButton from "./LogoutButton/LogoutButton";
-import LoginScreen from "./LoginScreen/LoginScreen";
+import { BrowserRouter, Route } from "react-router-dom";
+
+import { Container, Row, Col } from "reactstrap";
+
+import AdminDashboard from "./views/AdminDashboard.jsx";
+
+import "./assets/css/App.css";
+import BlackDashboardStyles from "./assets/css/black-dashboard-react.css";
+import NucleoIcons from "./assets/css/nucleo-icons.css";
+
+import LoginScreen from './views/LoginScreen/LoginScreen.jsx'
 
 function App() {
   /*const state = {
@@ -11,11 +18,23 @@ function App() {
   };*/
   return (
     <div className="App">
-      {/* <LoginScreen credentials={this.state.loginCredentials}></LoginScreen> */}
-      <div>
-        <h1>Administrator's Dashboard</h1>
-        <UpdateButton /> <LogoutButton />
-      </div>
+      <BrowserRouter>
+      <Route path="/" exact component={LoginScreen}></Route>
+      <Route path="/admin-dashboard" exact component={AdminDashboard}></Route>
+      {/* <AdminHeader></AdminHeader>
+      <Container fluid>
+        <Row>
+          <Col>
+            <DataTable></DataTable>
+            <DataTable></DataTable>
+          </Col>
+          <Col>
+            <DataTable></DataTable>
+            <BarGraph></BarGraph>
+          </Col>
+        </Row>
+      </Container> */}
+      </BrowserRouter>
     </div>
   );
 }

@@ -14,3 +14,40 @@ How to start the development server:
 - Images and fonts related to components will be stored under frontend/src/assets 
 
 - Components should be in their own folder under frontend/src and this folder should include the javascript and css files
+
+- File structure is as follows
+```
+frontend/
+.
+├── package-lock.json
+├── package.json
+├── README.md
+├── public
+│   ├── index.html
+│   └── manifest.json
+|   └── robots.txt
+└── src
+    ├── index.js
+    ├── logo-white.svg
+    ├── logo.svg
+    ├── routes.js
+    ├── assets
+    │   ├── css
+    │   ├── fonts
+    │   ├── images
+    ├── components
+    │   ├── AdminNavBar
+    │   │   └── AdminNavBar.js
+    │   ├── BarGraph
+    │   │   └── BarGraph.js
+    │   ├── DataTable
+    │   │   ├── DataTable.js
+    │   └── LogoutButton
+    │   │    └── LogoutButton.js
+    │   └── UpdateButton
+    │   │    └── UpdateButton.js 
+    └── views
+        ├── LoginScreen.js
+        ├── Dashboard.js
+        └── UserProfile.js
+```

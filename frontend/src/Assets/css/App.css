@@ -1,0 +1,5 @@
+.App {
+  text-align: center;
+  background-color: #1e1e2f; /*App.css only controls the styling of the App, which is the TOPMOST component of the program */
+  
+}
