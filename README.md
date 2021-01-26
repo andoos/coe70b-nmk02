@@ -44,7 +44,7 @@ frontend/
     │   └── LogoutButton
     │   │    └── LogoutButton.js
     │   └── SettingsButton
-│   │        └── SettingsButton.js
+    │        └── SettingsButton.js
     │   └── UpdateButton
     │   │    └── UpdateButton.js
     └── views
