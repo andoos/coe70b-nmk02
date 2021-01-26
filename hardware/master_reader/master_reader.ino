@@ -14,7 +14,7 @@ MAX30205 tempSensor;
 
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(38400);
   Wire.begin();
   tempSensor.scanAvailableSensors();
   tempSensor.begin();
