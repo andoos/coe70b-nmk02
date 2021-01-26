@@ -9,7 +9,7 @@ function DataTable() {
         <CardTitle tag="h4">Simple Table</CardTitle>
       </CardHeader>
       <CardBody>
-        <Table className="tablesorter" responsive>
+        <Table className="tablesorter">
           <thead className="text-primary">
             <tr>
               <th>Name</th>

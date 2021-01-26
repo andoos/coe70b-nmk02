@@ -14,7 +14,7 @@ function AdminDashboard() {
   return (
     <Container fluid>
       <AdminNavBar></AdminNavBar>
-      <li></li>
+      <ul></ul>
       <Row>
         <Col>
           <DataTable />
