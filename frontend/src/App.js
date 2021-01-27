@@ -21,19 +21,6 @@ function App() {
       <BrowserRouter>
       <Route path="/" exact component={LoginScreen}></Route>
       <Route path="/admin-dashboard" exact component={AdminDashboard}></Route>
-      {/* <AdminHeader></AdminHeader>
-      <Container fluid>
-        <Row>
-          <Col>
-            <DataTable></DataTable>
-            <DataTable></DataTable>
-          </Col>
-          <Col>
-            <DataTable></DataTable>
-            <BarGraph></BarGraph>
-          </Col>
-        </Row>
-      </Container> */}
       </BrowserRouter>
     </div>
   );

@@ -64,7 +64,7 @@ function DataTable(props) {
         <CardTitle tag="h4">{props.title}</CardTitle>
       </CardHeader>
       <CardBody>
-        <Table className="tablesorter" responsive>
+        <Table className="tablesorter">
           <thead className="text-primary">
             <tr>
               <th>{props.header1}</th>

@@ -9,18 +9,12 @@ import { FormGroup, Label, Input, Card, CardBody, Button } from "reactstrap";
 
 const LoginScreen = (props) => {
   const LoginScreen = styled.div`
-        background-image:  linear-gradient(
-            to right bottom,
-            rgba(20, 26, 136, 0.2),
-            rgba(82, 122, 99, 0.2)),
-            url(${background});
-        }
-        background-size: cover;
-        background-position: top;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-    `;
+    background-size: cover;
+    background-position: top;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  `;
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [credentials, setCredentials] = useState(["admin", "admin"]);

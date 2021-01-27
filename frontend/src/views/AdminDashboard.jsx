@@ -21,7 +21,7 @@ function AdminDashboard() {
   return (
     <Container fluid>
       <AdminNavBar></AdminNavBar>
-      <li></li>
+      <ul></ul>
       <Row>
         <Col>
           <DataTable title = "Employees not Social Distancing" header1 = "Employee 1" header2 = "Employee 2" header3 = "Distance (m)" header4 = "Duration (mins)" data = "bluetoothData"/>

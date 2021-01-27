@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Button } from "reactstrap";
+import { Button, UncontrolledTooltip } from "reactstrap";
 
 import LogoutStyles from "./LogoutButton.module.css";
 
@@ -18,10 +18,13 @@ function LogoutButton() {
   };
 
   return (
-    <div className={LogoutStyles.LogoutButton}>
+    <div className={LogoutStyles.LogoutButton} id="logout-tip">
       <Button className="btn-round btn-icon" color="info" onClick={doLogout}>
         <i className="tim-icons icon-upload" />
       </Button>
+      <UncontrolledTooltip placement="bottom" target="logout-tip">
+        Log out
+      </UncontrolledTooltip>
       {isLogout ? (
         <Switch>
           <Redirect from="/admin-dashboard" to="/"></Redirect>

@@ -1,15 +1,18 @@
 import React from "react";
 
-import { Button } from "reactstrap";
+import { Button, UncontrolledTooltip } from "reactstrap";
 
 import SettingsStyles from "./SettingsButton.module.css";
 
 function SettingsButton() {
   return (
-    <div className={SettingsStyles.SettingsButton}>
+    <div className={SettingsStyles.SettingsButton} id="settings">
       <Button className="btn-round btn-icon" color="info">
         <i className="tim-icons icon-settings-gear-63" />
       </Button>
+      <UncontrolledTooltip placement="bottom" target="settings">
+        Settings
+      </UncontrolledTooltip>
     </div>
   );
 }
