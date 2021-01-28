@@ -2,65 +2,81 @@ import React from "react";
 
 import { Card, CardBody, CardHeader, CardTitle, Table } from "reactstrap";
 
-function DataTable() {
+// Bluetooth Data
+const bluetoothData = [
+  {employeeA: "Jacob", employeeB: "Kevin", distance: 1.3, duration: 20},
+  {employeeA: "Raymond", employeeB: "Jane", distance: 0.5, duration: 5},
+  {employeeA: "Debra", employeeB: "Dave", distance: 1.4, duration: 50}
+]
+
+// Temperature Data
+const temperatureData = [
+  {employee: "Debra", temperature: 39.3, shiftstart: 900, shiftend: 2100},
+  {employee: "Andrew", temperature: 39, shiftstart: 600, shiftend: 1800},
+  {employee: "Omar", temperature: 38.6, shiftstart: 900, shiftend: 2100},
+  {employee: "Karen", temperature: 38, shiftstart: 330, shiftend: 1530}
+]
+
+// Flag Data
+const flagData = [
+  {employee: "Debra", flag: "TRUE", shiftstart: 900, shiftend: 2100}
+]
+
+// Render Bluetooth Data in Table
+const renderbluetoothData = (employee, index) => {
+  return(
+    <tr key = {index}>
+      <td>{employee.employeeA}</td>
+      <td>{employee.employeeB}</td>
+      <td>{employee.distance}</td>
+      <td>{employee.duration}</td>
+    </tr>
+  )
+}
+
+// Render Temperature Data in Table
+const rendertemperatureData = (employee, index) => {
+  return(
+    <tr key = {index}>
+      <td>{employee.employee}</td>
+      <td>{employee.temperature}</td>
+      <td>{employee.shiftstart}</td>
+      <td>{employee.shiftend}</td>
+    </tr>
+  )
+}
+
+// Render Flag Data in Table
+const renderflagData = (employee, index) => {
+  return(
+    <tr key = {index}>
+      <td>{employee.employee}</td>
+      <td>{employee.flag}</td>
+      <td>{employee.shiftstart}</td>
+      <td>{employee.shiftend}</td>
+    </tr>
+  )
+}
+function DataTable(props) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle tag="h4">Simple Table</CardTitle>
+        <CardTitle tag="h4">{props.title}</CardTitle>
       </CardHeader>
       <CardBody>
-        <Table className="tablesorter" responsive>
+        <Table className="tablesorter">
           <thead className="text-primary">
             <tr>
-              <th>Name</th>
-              <th>Country</th>
-              <th>City</th>
-              <th className="text-center">Salary</th>
+              <th>{props.header1}</th>
+              <th>{props.header2}</th>
+              <th>{props.header3}</th>
+              <th className="text-center">{props.header4}</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Dakota Rice</td>
-              <td>Niger</td>
-              <td>Oud-Turnhout</td>
-              <td className="text-center">$36,738</td>
-            </tr>
-            <tr>
-              <td>Minerva Hooper</td>
-              <td>Curaçao</td>
-              <td>Sinaai-Waas</td>
-              <td className="text-center">$23,789</td>
-            </tr>
-            <tr>
-              <td>Sage Rodriguez</td>
-              <td>Netherlands</td>
-              <td>Baileux</td>
-              <td className="text-center">$56,142</td>
-            </tr>
-            <tr>
-              <td>Philip Chaney</td>
-              <td>Korea, South</td>
-              <td>Overland Park</td>
-              <td className="text-center">$38,735</td>
-            </tr>
-            <tr>
-              <td>Doris Greene</td>
-              <td>Malawi</td>
-              <td>Feldkirchen in Kärnten</td>
-              <td className="text-center">$63,542</td>
-            </tr>
-            <tr>
-              <td>Mason Porter</td>
-              <td>Chile</td>
-              <td>Gloucester</td>
-              <td className="text-center">$78,615</td>
-            </tr>
-            <tr>
-              <td>Jon Porter</td>
-              <td>Portugal</td>
-              <td>Gloucester</td>
-              <td className="text-center">$98,615</td>
-            </tr>
+            {props.data == "bluetoothData" ? bluetoothData.map(renderbluetoothData) : null}
+            {props.data == "temperatureData" ? temperatureData.map(rendertemperatureData) : null}
+            {props.data == "flagData" ? flagData.map(renderflagData) : null}
           </tbody>
         </Table>
       </CardBody>
