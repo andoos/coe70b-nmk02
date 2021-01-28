@@ -19,7 +19,6 @@
   font-size: 18px;
   font-weight: bold;
   border: 3px solid black;
-  background-color: rgba(146, 142, 142, 0.842);
 }
 
 .LoginBox input:focus {
