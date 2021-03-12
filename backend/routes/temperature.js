@@ -14,15 +14,23 @@ db.connect((err) => {
   console.log("Connected");
 });
 
-/* GET temperature readings for a wrist id*/
+/* GET all temperature readings*/
 router.get("/", function (req, res, next) {
-  const sqlQuery =
-    "SELECT * FROM hardware.TemperatureEvent_NEW WHERE Wrist_ID='53';";
+  const sqlQuery = "SELECT * FROM hardware.TemperatureEvent_NEW;";
   db.query(sqlQuery, (err, result) => {
-    console.log(result);
     res.send(result);
   });
-  //res.render("index", { title: "Express" });
+});
+
+/* GET all temperature readings for a wrist id*/
+router.get("/:wristId", function (req, res, next) {
+  const sqlQuery =
+    "SELECT * FROM hardware.TemperatureEvent_NEW WHERE Wrist_ID='" +
+    req.params.wristId +
+    "';";
+  db.query(sqlQuery, (err, result) => {
+    res.send(result);
+  });
 });
 
 module.exports = router;
