@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import loginStyles from "./LoginScreen.module.css";
 import styled from "styled-components";
 import background from "../../assets/images/loginBackground.jpg";
 import defaultUser from "../../assets/images/defaultUser.png";
 import { Switch, Redirect } from "react-router-dom";
+import axios from "axios"
 
 import { FormGroup, Label, Input, Card, CardBody, Button } from "reactstrap";
 
@@ -17,13 +18,25 @@ const LoginScreen = (props) => {
   `;
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [credentials, setCredentials] = useState(["admin", "admin"]);
+  const [credentials, setCredentials] = useState(["", ""]);
   const [loginError, setLoginError] = useState(false);
+  const [usernameInput, setUsernameInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
+  
+  const useDidMountEffect = (func, deps) => {
+    const didMount = useRef(false);
 
-  function Authenticate() {
-    var usernameInput = document.getElementById("username").value;
-    var passwordInput = document.getElementById("password").value;
-    if (usernameInput === credentials[0] && passwordInput === credentials[1]) {
+    useEffect(() => {
+      if (didMount.current) func();
+      else didMount.current = true;
+    }, deps);
+  }
+
+  useDidMountEffect(() => {
+    if (
+      usernameInput === credentials[0] &&
+      passwordInput === credentials[1] 
+    ) {
       setIsAuthenticated(true);
     } else {
       setLoginError(true);
@@ -31,6 +44,16 @@ const LoginScreen = (props) => {
 
     document.getElementById("username").value = "";
     document.getElementById("password").value = "";
+  }, [credentials])
+
+  function Authenticate() {
+    axios.get("v1/api/credentials").then((response) => {
+      setCredentials([response.data.username, response.data.password]);
+    });
+    console.log(credentials[0]);
+    console.log(credentials[1]);
+    setUsernameInput(document.getElementById("username").value);
+    setPasswordInput(document.getElementById("password").value);
   }
 
   return (
