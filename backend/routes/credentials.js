@@ -14,7 +14,7 @@ db.connect((err) => {
   console.log("Connected");
 });
 
-/* GET temperature readings for a wrist id*/
+/* GET user credentials stored in user credentials table*/
 router.get("/usercredentials", function (req, res, next) {
   const sqlQuery = "SELECT * FROM UserCredentials';";
   db.query(sqlQuery, (err, result) => {
