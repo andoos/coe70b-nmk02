@@ -7,7 +7,6 @@ const { db } = require("../database.js");
 router.get("/", function (req, res, next) {
   const sqlQuery = "SELECT * FROM UserCredentials;";
   db.query(sqlQuery, (err, result) => {
-    console.log(result);
     res.send(result);
   });
   //res.render("index", { title: "Express" });
