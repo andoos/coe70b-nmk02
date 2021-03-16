@@ -37,24 +37,24 @@ connection = pymysql.connect(host='nmk02-mysql-test.csqhhjgbuho8.us-east-2.rds.a
 with connection: 
         with connection.cursor() as cursor:
                 pass
-                #sql = "INSERT INTO hardware.TemperatureEvent_NEW VALUES ('', '" + temp + "', '" + deviceID + "', '" + time + "');"
+                #sql = "INSERT INTO hardware.TemperatureEvent VALUES ('', '" + temp + "', '" + deviceID + "', '" + time + "');"
                 #cursor.execute(sql)
                 #connection.commit()
 
-                #sql = "INSERT INTO hardware.BluetoothEvent_NEW VALUES ('', '" + distance + "', '" + BTdeviceA + "', '" + BTdeviceB + "', '" + BTtime + "');"
+                #sql = "INSERT INTO hardware.BluetoothEvent VALUES ('', '" + distance + "', '" + BTdeviceA + "', '" + BTdeviceB + "', '" + BTtime + "');"
                 #cursor.execute(sql)
                 #connection.commit()
 
         
         with connection.cursor() as cursor: 
-                sql = "SELECT * FROM hardware.TemperatureEvent_NEW;"
+                sql = "SELECT * FROM hardware.TemperatureEvent;"
                 cursor.execute(sql)
                 result = cursor.fetchall()
                 print('Result from query -> ' + sql)
                 print(result)
 
         with connection.cursor() as cursor: 
-                sql = "SELECT * FROM hardware.BluetoothEvent_NEW;"
+                sql = "SELECT * FROM hardware.BluetoothEvent;"
                 cursor.execute(sql)
                 result = cursor.fetchall()
                 print('Result from query -> ' + sql)
