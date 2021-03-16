@@ -15,8 +15,10 @@ SoftwareSerial BTserial(D5,D6); // RX | TX
 const long baudRate = 38400; //default baudrate of AT commands
 char c=' ';
 char d = ' ';
+String msg;
 float temp = 0.0;
 boolean NL = true;
+int n=0;
 
 void setup() {
   Serial.begin(38400);
@@ -40,12 +42,17 @@ void setup() {
 }
 
 void loop() {
-
-  if (BTserial.available())// if theres data on the software serial read it and print it to serial
+ /* BTserial.write("AT+ROLE=%d", n);
+  n = not n;
+  delay(100);
+  BTserial.read();*/
+  while (BTserial.available())// if theres data on the software serial read it and print it to serial
     {
-        d = BTserial.read();
-        Serial.write(d);
+        msg = BTserial.readString();
+        Serial.print(msg);
     }
+    
+    
     
   if (Serial.available())//take input from serial window and send it to software serial bus to hc05
     {
