@@ -15,6 +15,11 @@ wrist_id = ["84:CC:A8:A4:41:79", # small breadboard (actual prototype)
 # generate a bluetooth event 
 BTdeviceA = wrist_id[randrange(6)]
 BTdeviceB = wrist_id[randrange(6)]
+
+# make sure device IDs are not the same
+while BTdeviceA == BTdeviceB:
+        BTdeviceB = wrist_id[randrange(6)]        
+
 distance = str(round(random.uniform(0, 2)))
 # time = str(random.randrange(1615813200, 1615856400)) # March 15 2021 9:00 - 21:00
 time = str(random.randrange(1615899600, 1615942800)) # March 16 2021 9:00 - 21:00
@@ -38,19 +43,3 @@ with connection:
                 sql = "INSERT INTO hardware.TemperatureEvent (Temperature, Wrist_ID, Timestamp) VALUES ('" + temperature_B + "', '" + BTdeviceB + "', '" + time + "');"
                 cursor.execute(sql)
                 connection.commit()
-
-        # with connection.cursor() as cursor: 
-        #         sql = "SELECT * FROM hardware.TemperatureEvent_NEW;"
-        #         cursor.execute(sql)
-        #         result = cursor.fetchall()
-        #         print('Result from query -> ' + sql)
-        #         print(result)
-
-        # with connection.cursor() as cursor: 
-        #         sql = "SELECT * FROM hardware.BluetoothEvent_NEW;"
-        #         cursor.execute(sql)
-        #         result = cursor.fetchall()
-        #         print('Result from query -> ' + sql)
-        #         print(result)
-
-
