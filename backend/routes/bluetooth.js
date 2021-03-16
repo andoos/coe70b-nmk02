@@ -6,7 +6,7 @@ const { db } = require("../database.js");
 
 /* GET all bluetooth readings*/
 router.get("/", cors(), function (req, res, next) {
-  const sqlQuery = "SELECT * FROM hardware.BluetoothEvent_NEW;";
+  const sqlQuery = "SELECT * FROM hardware.BluetoothEvent;";
   db.query(sqlQuery, (err, result) => {
     res.send(result);
   });
@@ -14,7 +14,7 @@ router.get("/", cors(), function (req, res, next) {
 
 /* GET sum of all bluetooth readings for the hour */
 router.get("/sum", cors(), function (req, res, next) {
-  const sqlQuery = "SELECT HOUR(Timestamp) 'hr', COUNT(Timestamp) 'count' FROM hardware.BluetoothEvent_NEW WHERE DAY(Timestamp) = DAY(NOW()) GROUP BY hr;";
+  const sqlQuery = "SELECT HOUR(Timestamp) 'hr', COUNT(Timestamp) 'count' FROM hardware.BluetoothEvent WHERE DAY(Timestamp) = DAY(NOW()) GROUP BY hr;";
   db.query(sqlQuery, (err, result) => {
     res.send(result)
   })
@@ -23,7 +23,7 @@ router.get("/sum", cors(), function (req, res, next) {
 /* GET all bluetooth readings for a wrist id*/
 router.get("/:wristId", function (req, res, next) {
   const sqlQuery =
-    "SELECT * FROM hardware.BluetoothEvent_NEW WHERE Wrist_ID_A='" +
+    "SELECT * FROM hardware.BluetoothEvent WHERE Wrist_ID_A='" +
     req.params.wristId +
     "';";
   db.query(sqlQuery, (err, result) => {
