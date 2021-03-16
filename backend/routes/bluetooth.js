@@ -31,6 +31,4 @@ router.get("/:wristId", function (req, res, next) {
   });
 });
 
-// http://localhost:5000/v1/api/bluetooth
-
 module.exports = router;

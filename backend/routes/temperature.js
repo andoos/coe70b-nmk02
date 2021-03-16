@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var cors = require('cors');
+var cors = require("cors");
 
 const { db } = require("../database.js");
 
@@ -22,7 +22,5 @@ router.get("/:wristId", function (req, res, next) {
     res.send(result);
   });
 });
-
-// http://localhost:5000/v1/api/temperature
 
 module.exports = router;
