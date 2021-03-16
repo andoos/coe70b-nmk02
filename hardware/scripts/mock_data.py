@@ -1,7 +1,6 @@
 import random
 import time
 import pymysql
-import json
 import datetime
 
 from random import randrange
@@ -37,40 +36,28 @@ connection = pymysql.connect(host='nmk02-mysql-test.csqhhjgbuho8.us-east-2.rds.a
 
 with connection: 
         with connection.cursor() as cursor:
-                
-                sql = "SELECT idTemperatureEvent_NEW FROM hardware.TemperatureEvent_NEW WHERE idTemperatureEvent_NEW=(SELECT max(idTemperatureEvent_NEW) from hardware.TemperatureEvent_NEW);"
-                cursor.execute(sql)
-                MaxID = str(int(cursor.fetchall()[0][0])+1)
+                pass
+                #sql = "INSERT INTO hardware.TemperatureEvent_NEW VALUES ('', '" + temp + "', '" + deviceID + "', '" + time + "');"
+                #cursor.execute(sql)
+                #connection.commit()
 
-                sql = "INSERT INTO hardware.TemperatureEvent_NEW VALUES ('"+MaxID+"', '" + temp + "', '" + deviceID + "', '" + time + "');"
-                cursor.execute(sql)
-                connection.commit()
-                print(sql)
+                #sql = "INSERT INTO hardware.BluetoothEvent_NEW VALUES ('', '" + distance + "', '" + BTdeviceA + "', '" + BTdeviceB + "', '" + BTtime + "');"
+                #cursor.execute(sql)
+                #connection.commit()
 
-                sql = "SELECT idBluetoothEvent_NEW FROM hardware.BluetoothEvent_NEW WHERE idBluetoothEvent_NEW=(SELECT max(idBluetoothEvent_NEW) from hardware.BluetoothEvent_NEW);"
-                cursor.execute(sql)
-                MaxID = str(int(cursor.fetchall()[0][0])+1)
-
-                sql = "INSERT INTO hardware.BluetoothEvent_NEW VALUES ('MaxID', '" + distance + "', '" + BTdeviceA + "', '" + BTdeviceB + "', '" + BTtime + "');"
-                cursor.execute(sql)
-                connection.commit()
-                print(sql)
         
         with connection.cursor() as cursor: 
                 sql = "SELECT * FROM hardware.TemperatureEvent_NEW;"
                 cursor.execute(sql)
                 result = cursor.fetchall()
-                #print('Result from query -> ' + sql)
-                #print(result)
+                print('Result from query -> ' + sql)
+                print(result)
 
         with connection.cursor() as cursor: 
                 sql = "SELECT * FROM hardware.BluetoothEvent_NEW;"
                 cursor.execute(sql)
                 result = cursor.fetchall()
-                #print('Result from query -> ' + sql)
-                #print(result)
+                print('Result from query -> ' + sql)
+                print(result)
 
-                #sql = "SELECT idBluetoothEvent_NEW FROM hardware.BluetoothEvent_NEW WHERE idBluetoothEvent_NEW=(SELECT max(idBluetoothEvent_NEW) from hardware.BluetoothEvent_NEW);"
-                #cursor.execute(sql)
-                #result = int(cursor.fetchall()[0][0])
 
