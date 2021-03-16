@@ -5,36 +5,28 @@ import datetime
 
 from random import randrange
 
-uuid = ["a0a19964-9829-40d5-9b76-ff64ade4f1e2", 
-        "50c87ff9-3525-4db4-93b4-0f8f84fe9ad5", 
-        "0666de60-c3ec-4eaa-aebf-3e1efc527961", 
-        "67681821-0e43-43d4-a755-d09c237546c3", 
-        "80b2a467-2493-42df-8976-f01ff512a6a8", 
-        "0da8e758-b7ca-4657-b9f0-dda1d25e15fd", 
-        "fc4a6de2-95cf-4fa3-98e9-c1de01e1d017", 
-        "580d5b60-5a66-457b-ae0b-62c48b4932fa", 
-        "2ebbcbd8-06c0-4b1e-8357-ea5bb2f4b147", 
-        "fb433517-d48e-4e91-9131-fd7b5286a81c"]
+wrist_id = ["84:CC:A8:A4:41:79", # small breadboard (actual prototype)
+            "84:CC:A8:AA:AE:7C", # big breadboard (actual prototype)
+            "84:CC:A8:DA:32:EC", 
+            "84:CC:A8:51:C8:AD", 
+            "84:CC:A8:64:65:DC",
+            "84:CC:A8:EA:1B:78"]
 
-temperature = round(random.uniform(36.0, 41.0), 1)
-
-# generate random epoch between feb 23 2021 8:00 - feb 23 2021 20:00
-time = datetime.datetime.fromtimestamp(random.randrange(1614085200, 1614128400)).isoformat()
-temp = str(temperature)
-deviceID = uuid[randrange(10)]
-
+# generate a bluetooth event 
+BTdeviceA = wrist_id[randrange(6)]
+BTdeviceB = wrist_id[randrange(6)]
 distance = str(round(random.uniform(0, 2)))
-BTdeviceA = uuid[randrange(10)]
-BTdeviceB = uuid[randrange(10)]
-BTtime = datetime.datetime.fromtimestamp(random.randrange(1614085200, 1614128400)).isoformat()
+# time = str(random.randrange(1615813200, 1615856400)) # March 15 2021 9:00 - 21:00
+time = str(random.randrange(1615899600, 1615942800)) # March 16 2021 9:00 - 21:00
 
-#rnd_time = random.randrange(1614085200, 1614128400)
-
-#bluetooth_event = rssi + ',' + uuid[randrange(10)] + ',' + uuid[randrange(10)] + ',' + str(rnd_time)
+# generate a temperature event for each user 
+temperature_A = str(round(random.uniform(36.0, 41.0), 1))
+temperature_B = str(round(random.uniform(36.0, 41.0), 1))
 
 connection = pymysql.connect(host='nmk02-mysql-test.csqhhjgbuho8.us-east-2.rds.amazonaws.com', user='admin', password='Omar1234', db='hardware')
 
 with connection: 
+<<<<<<< HEAD
         with connection.cursor() as cursor:
                 pass
                 #sql = "INSERT INTO hardware.TemperatureEvent VALUES ('', '" + temp + "', '" + deviceID + "', '" + time + "');"
@@ -48,16 +40,38 @@ with connection:
         
         with connection.cursor() as cursor: 
                 sql = "SELECT * FROM hardware.TemperatureEvent;"
+=======
+        with connection.cursor() as cursor:        
+                sql = "INSERT INTO hardware.BluetoothEvent (Distance, Wrist_ID_A, Wrist_ID_B, Timestamp) VALUES ('" + distance + "', '" + BTdeviceA + "', '" + BTdeviceB + "', '" + time + "');"
                 cursor.execute(sql)
-                result = cursor.fetchall()
-                print('Result from query -> ' + sql)
-                print(result)
+                connection.commit()
 
+                sql = "INSERT INTO hardware.TemperatureEvent (Temperature, Wrist_ID, Timestamp) VALUES ('" + temperature_A + "', '" + BTdeviceA + "', '" + time + "');"
+>>>>>>> afbe8f48da98fe5bb4bfbeb4e152db22e2f4d798
+                cursor.execute(sql)
+                connection.commit()
+
+<<<<<<< HEAD
         with connection.cursor() as cursor: 
                 sql = "SELECT * FROM hardware.BluetoothEvent;"
+=======
+                sql = "INSERT INTO hardware.TemperatureEvent (Temperature, Wrist_ID, Timestamp) VALUES ('" + temperature_B + "', '" + BTdeviceB + "', '" + time + "');"
+>>>>>>> afbe8f48da98fe5bb4bfbeb4e152db22e2f4d798
                 cursor.execute(sql)
-                result = cursor.fetchall()
-                print('Result from query -> ' + sql)
-                print(result)
+                connection.commit()
+
+        # with connection.cursor() as cursor: 
+        #         sql = "SELECT * FROM hardware.TemperatureEvent_NEW;"
+        #         cursor.execute(sql)
+        #         result = cursor.fetchall()
+        #         print('Result from query -> ' + sql)
+        #         print(result)
+
+        # with connection.cursor() as cursor: 
+        #         sql = "SELECT * FROM hardware.BluetoothEvent_NEW;"
+        #         cursor.execute(sql)
+        #         result = cursor.fetchall()
+        #         print('Result from query -> ' + sql)
+        #         print(result)
 
 
