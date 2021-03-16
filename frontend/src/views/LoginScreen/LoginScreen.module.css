@@ -19,12 +19,11 @@
   font-size: 18px;
   font-weight: bold;
   border: 3px solid black;
-  background-color: rgba(146, 142, 142, 0.842);
 }
 
 .LoginBox input:focus {
-  outline: 2px rgba(219, 120, 27, 0.5);
-  border: 3px solid rgba(57, 80, 158, 0.541);
+  outline: 2px black;
+  border: 3px solid black;
 }
 
 .LoginBox label {

@@ -24,7 +24,7 @@ frontend/
 ├── README.md
 ├── public
 │   ├── index.html
-│   └── manifest.json
+│   ├── manifest.json
 |   └── robots.txt
 └── src
     ├── App.js
@@ -40,15 +40,15 @@ frontend/
     │   ├── BarGraph
     │   │   └── BarGraph.js
     │   ├── DataTable
-    │   │   ├── DataTable.js
-    │   └── LogoutButton
-    │   │    └── LogoutButton.js
-    │   └── SettingsButton
-    │        └── SettingsButton.js
-    │   └── UpdateButton
-    │   │    └── UpdateButton.js
+    │   │   └── DataTable.js
+    │   ├── LogoutButton
+    │   │   └── LogoutButton.js
+    │   ├── SettingsButton
+    │   │   └── SettingsButton.js
+    │   ├── UpdateButton
+    │   │   └── UpdateButton.js
     └── views
         ├── LoginScreen
-        │     └── LoginScreen.js
+        │   └── LoginScreen.js
         └──  AdminDashboard.js
 ```
