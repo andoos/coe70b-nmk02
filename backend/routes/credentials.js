@@ -16,4 +16,6 @@ router.get("/", function (req, res, next) {
   //res.render("index", { title: "Express" });
 });
 
+// http://localhost:5000/v1/api/credentials
+
 module.exports = router;

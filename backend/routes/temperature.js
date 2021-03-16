@@ -1,10 +1,11 @@
 var express = require("express");
 var router = express.Router();
+var cors = require('cors');
 
 const { db } = require("../database.js");
 
 /* GET all temperature readings*/
-router.get("/", function (req, res, next) {
+router.get("/", cors(), function (req, res, next) {
   const sqlQuery = "SELECT * FROM hardware.TemperatureEvent_NEW;";
   db.query(sqlQuery, (err, result) => {
     res.send(result);
@@ -21,5 +22,7 @@ router.get("/:wristId", function (req, res, next) {
     res.send(result);
   });
 });
+
+// http://localhost:5000/v1/api/temperature
 
 module.exports = router;

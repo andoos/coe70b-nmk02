@@ -1,35 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Card, CardBody, CardHeader, CardTitle, Table } from "reactstrap";
-
-// Bluetooth Data
-const bluetoothData = [
-  {employeeA: "Jacob", employeeB: "Kevin", distance: 1.3, duration: 20},
-  {employeeA: "Raymond", employeeB: "Jane", distance: 0.5, duration: 5},
-  {employeeA: "Debra", employeeB: "Dave", distance: 1.4, duration: 50}
-]
-
-// Temperature Data
-const temperatureData = [
-  {employee: "Debra", temperature: 39.3, shiftstart: 900, shiftend: 2100},
-  {employee: "Andrew", temperature: 39, shiftstart: 600, shiftend: 1800},
-  {employee: "Omar", temperature: 38.6, shiftstart: 900, shiftend: 2100},
-  {employee: "Karen", temperature: 38, shiftstart: 330, shiftend: 1530}
-]
-
-// Flag Data
-const flagData = [
-  {employee: "Debra", flag: "TRUE", shiftstart: 900, shiftend: 2100}
-]
 
 // Render Bluetooth Data in Table
 const renderbluetoothData = (employee, index) => {
   return(
-    <tr key = {index}>
-      <td>{employee.employeeA}</td>
-      <td>{employee.employeeB}</td>
-      <td>{employee.distance}</td>
-      <td>{employee.duration}</td>
+    <tr key = {index.idBluetoothEvent_NEW}>
+      <td>{employee.Wrist_ID_A}</td>
+      <td>{employee.Wrist_ID_B}</td>
+      <td>{employee.Distance}</td>
+      <td>{employee.Timestamp}</td>
     </tr>
   )
 }
@@ -37,10 +17,10 @@ const renderbluetoothData = (employee, index) => {
 // Render Temperature Data in Table
 const rendertemperatureData = (employee, index) => {
   return(
-    <tr key = {index}>
-      <td>{employee.employee}</td>
-      <td>{employee.temperature}</td>
-      <td>{employee.shiftstart}</td>
+    <tr key = {index.idTemperatureEvent_NEW}>
+      <td>{employee.Wrist_ID}</td>
+      <td>{employee.Temperature}</td>
+      <td>{employee.Timestamp}</td>
       <td>{employee.shiftend}</td>
     </tr>
   )
@@ -57,7 +37,37 @@ const renderflagData = (employee, index) => {
     </tr>
   )
 }
+
 function DataTable(props) {
+
+  const [bluetoothData, setbluetoothData] = useState([]);
+  const [temperatureData, settemperatureData] = useState([]);
+  const [flagData, setflagData] = useState([]);
+
+  useEffect(() => {
+    getBluetooth();
+    getTemperature();
+    getFlag();
+  }, []);
+
+  const getBluetooth = async () => {
+    const response = await fetch("http://localhost:5000/v1/api/bluetooth/");
+    const data = await response.json();
+    setbluetoothData(data);
+  }
+
+  const getTemperature = async () => {
+    const response = await fetch("http://localhost:5000/v1/api/temperature/")
+    const data = await response.json();
+    settemperatureData(data);
+  }
+
+  const getFlag = async () => {
+    const response = await fetch ("http://localhost:5000/v1/api/credentials")
+    const data = await response.json();
+    setflagData(data)
+  }
+
   return (
     <Card>
       <CardHeader>
