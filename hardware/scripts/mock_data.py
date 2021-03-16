@@ -1,6 +1,8 @@
 import random
 import time
 import pymysql
+import json
+import datetime
 
 from random import randrange
 
@@ -18,43 +20,57 @@ uuid = ["a0a19964-9829-40d5-9b76-ff64ade4f1e2",
 temperature = round(random.uniform(36.0, 41.0), 1)
 
 # generate random epoch between feb 23 2021 8:00 - feb 23 2021 20:00
-rnd_time = random.randrange(1614085200, 1614128400)
+time = datetime.datetime.fromtimestamp(random.randrange(1614085200, 1614128400)).isoformat()
+temp = str(temperature)
+deviceID = uuid[randrange(10)]
 
-temp_event = str(temperature) + ',' + uuid[randrange(10)] + ',' + str(rnd_time)
+distance = str(round(random.uniform(0, 2)))
+BTdeviceA = uuid[randrange(10)]
+BTdeviceB = uuid[randrange(10)]
+BTtime = datetime.datetime.fromtimestamp(random.randrange(1614085200, 1614128400)).isoformat()
 
-print('Temperature Event')
-print(temp_event)
+#rnd_time = random.randrange(1614085200, 1614128400)
 
-#print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(rnd_time)))
-
-rssi = hex(random.randrange(0, 65535))[2:]
-
-rnd_time = random.randrange(1614085200, 1614128400)
-
-bluetooth_event = rssi + ',' + uuid[randrange(10)] + ',' + uuid[randrange(10)] + ',' + str(rnd_time)
-
-print('Bluetooth Event')
-print(bluetooth_event)
+#bluetooth_event = rssi + ',' + uuid[randrange(10)] + ',' + uuid[randrange(10)] + ',' + str(rnd_time)
 
 connection = pymysql.connect(host='nmk02-mysql-test.csqhhjgbuho8.us-east-2.rds.amazonaws.com', user='admin', password='Omar1234', db='hardware')
 
 with connection: 
-        # with connection.cursor() as cursor:
-        #         sql = "INSERT INTO hardware.BluetoothEvent VALUES ('4', " + "'" + bluetooth_event + "');"
-        #         cursor.execute(sql)
-        #         connection.commit()
+        with connection.cursor() as cursor:
+                
+                sql = "SELECT idTemperatureEvent_NEW FROM hardware.TemperatureEvent_NEW WHERE idTemperatureEvent_NEW=(SELECT max(idTemperatureEvent_NEW) from hardware.TemperatureEvent_NEW);"
+                cursor.execute(sql)
+                MaxID = str(int(cursor.fetchall()[0][0])+1)
+
+                sql = "INSERT INTO hardware.TemperatureEvent_NEW VALUES ('"+MaxID+"', '" + temp + "', '" + deviceID + "', '" + time + "');"
+                cursor.execute(sql)
+                connection.commit()
+                print(sql)
+
+                sql = "SELECT idBluetoothEvent_NEW FROM hardware.BluetoothEvent_NEW WHERE idBluetoothEvent_NEW=(SELECT max(idBluetoothEvent_NEW) from hardware.BluetoothEvent_NEW);"
+                cursor.execute(sql)
+                MaxID = str(int(cursor.fetchall()[0][0])+1)
+
+                sql = "INSERT INTO hardware.BluetoothEvent_NEW VALUES ('MaxID', '" + distance + "', '" + BTdeviceA + "', '" + BTdeviceB + "', '" + BTtime + "');"
+                cursor.execute(sql)
+                connection.commit()
+                print(sql)
         
         with connection.cursor() as cursor: 
-                sql = "SELECT * FROM hardware.TemperatureEvent;"
+                sql = "SELECT * FROM hardware.TemperatureEvent_NEW;"
                 cursor.execute(sql)
                 result = cursor.fetchall()
-                print('Result from query -> ' + sql)
-                print(result)
+                #print('Result from query -> ' + sql)
+                #print(result)
 
         with connection.cursor() as cursor: 
-                sql = "SELECT * FROM hardware.BluetoothEvent;"
+                sql = "SELECT * FROM hardware.BluetoothEvent_NEW;"
                 cursor.execute(sql)
                 result = cursor.fetchall()
-                print('Result from query -> ' + sql)
-                print(result)
+                #print('Result from query -> ' + sql)
+                #print(result)
+
+                #sql = "SELECT idBluetoothEvent_NEW FROM hardware.BluetoothEvent_NEW WHERE idBluetoothEvent_NEW=(SELECT max(idBluetoothEvent_NEW) from hardware.BluetoothEvent_NEW);"
+                #cursor.execute(sql)
+                #result = int(cursor.fetchall()[0][0])
 
