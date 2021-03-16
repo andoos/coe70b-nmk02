@@ -31,15 +31,36 @@ temperature_B = str(round(random.uniform(36.0, 41.0), 1))
 connection = pymysql.connect(host='nmk02-mysql-test.csqhhjgbuho8.us-east-2.rds.amazonaws.com', user='admin', password='Omar1234', db='hardware')
 
 with connection: 
+<<<<<<< HEAD
+        with connection.cursor() as cursor:
+                pass
+                #sql = "INSERT INTO hardware.TemperatureEvent VALUES ('', '" + temp + "', '" + deviceID + "', '" + time + "');"
+                #cursor.execute(sql)
+                #connection.commit()
+
+                #sql = "INSERT INTO hardware.BluetoothEvent VALUES ('', '" + distance + "', '" + BTdeviceA + "', '" + BTdeviceB + "', '" + BTtime + "');"
+                #cursor.execute(sql)
+                #connection.commit()
+
+        
+        with connection.cursor() as cursor: 
+                sql = "SELECT * FROM hardware.TemperatureEvent;"
+=======
         with connection.cursor() as cursor:        
                 sql = "INSERT INTO hardware.BluetoothEvent (Distance, Wrist_ID_A, Wrist_ID_B, Timestamp) VALUES ('" + distance + "', '" + BTdeviceA + "', '" + BTdeviceB + "', '" + time + "');"
                 cursor.execute(sql)
                 connection.commit()
 
                 sql = "INSERT INTO hardware.TemperatureEvent (Temperature, Wrist_ID, Timestamp) VALUES ('" + temperature_A + "', '" + BTdeviceA + "', '" + time + "');"
+>>>>>>> afbe8f48da98fe5bb4bfbeb4e152db22e2f4d798
                 cursor.execute(sql)
                 connection.commit()
 
+<<<<<<< HEAD
+        with connection.cursor() as cursor: 
+                sql = "SELECT * FROM hardware.BluetoothEvent;"
+=======
                 sql = "INSERT INTO hardware.TemperatureEvent (Temperature, Wrist_ID, Timestamp) VALUES ('" + temperature_B + "', '" + BTdeviceB + "', '" + time + "');"
+>>>>>>> afbe8f48da98fe5bb4bfbeb4e152db22e2f4d798
                 cursor.execute(sql)
                 connection.commit()
