@@ -6,8 +6,22 @@ import { Card, CardBody, CardHeader, CardTitle, Container } from "reactstrap";
 import {
   chartExample3,
 } from "./charts.js";
+import { useEffect, useState } from "react";
 
 function BarGraph() {
+  
+  const [bluetoothData, setbluetoothData] = useState([]);
+
+  useEffect(() => {
+    getBluetooth();
+  }, []);
+
+  const getBluetooth = async () => {
+    const response = await fetch("http://localhost:5000/v1/api/bluetooth/sum/");
+    const data = await response.json();
+    setbluetoothData(data);
+  }
+  
   return (
     <Card className="card-chart">
       <CardHeader>

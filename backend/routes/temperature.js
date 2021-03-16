@@ -1,10 +1,11 @@
 var express = require("express");
 var router = express.Router();
+var cors = require("cors");
 
 const { db } = require("../database.js");
 
 /* GET all temperature readings*/
-router.get("/", function (req, res, next) {
+router.get("/", cors(), function (req, res, next) {
   const sqlQuery = "SELECT * FROM hardware.TemperatureEvent_NEW;";
   db.query(sqlQuery, (err, result) => {
     res.send(result);
