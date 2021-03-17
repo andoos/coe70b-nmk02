@@ -17,16 +17,17 @@ router.get("/", cors(), function (req, res, next) {
       ";";
   }
   db.query(sqlQuery, (err, result) => {
-    res.send(result);
-  });
-});
-
-/* GET sum of all bluetooth readings for the hour */
-router.get("/sum", cors(), function (req, res, next) {
-  const sqlQuery =
-    "SELECT HOUR(Timestamp) 'hr', COUNT(Timestamp) 'count' FROM hardware.BluetoothEvent WHERE DAY(Timestamp) = DAY(NOW()) GROUP BY hr;";
-  db.query(sqlQuery, (err, result) => {
-    res.send(result);
+    res.send(
+      result.map((element) => {
+        return {
+          BluetoothEventID: element.BluetoothEventID,
+          Distance: element.Distance,
+          Wrist_ID_A: element.Wrist_ID_A,
+          Wrist_ID_B: element.Wrist_ID_B,
+          Timestamp: new Date(element.Timestamp * 1000).toLocaleString(),
+        };
+      })
+    );
   });
 });
 
@@ -36,6 +37,26 @@ router.get("/:wristId", function (req, res, next) {
     "SELECT * FROM hardware.BluetoothEvent WHERE Wrist_ID_A='" +
     req.params.wristId +
     "';";
+  db.query(sqlQuery, (err, result) => {
+    result;
+    res.send(
+      result.map((element) => {
+        return {
+          BluetoothEventID: element.BluetoothEventID,
+          Distance: element.Distance,
+          Wrist_ID_A: element.Wrist_ID_A,
+          Wrist_ID_B: element.Wrist_ID_B,
+          Timestamp: new Date(element.Timestamp * 1000).toLocaleString(),
+        };
+      })
+    );
+  });
+});
+
+/* GET sum of all bluetooth readings for the hour */
+router.get("/sum", cors(), function (req, res, next) {
+  const sqlQuery =
+    "SELECT HOUR(Timestamp) 'hr', COUNT(Timestamp) 'count' FROM hardware.BluetoothEvent WHERE DAY(Timestamp) = DAY(NOW()) GROUP BY hr;";
   db.query(sqlQuery, (err, result) => {
     res.send(result);
   });
