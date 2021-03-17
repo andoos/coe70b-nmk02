@@ -3,6 +3,7 @@ var cors = require("cors");
 var router = express.Router();
 
 const { db } = require("../database.js");
+const e = require("express");
 
 /* GET all temperature readings*/
 router.get("/", cors(), function (req, res, next) {
@@ -17,7 +18,16 @@ router.get("/", cors(), function (req, res, next) {
       ";";
   }
   db.query(sqlQuery, (err, result) => {
-    res.send(result);
+    res.send(
+      result.map((element) => {
+        return {
+          TemperatureEventID: element.TemperatureEventID,
+          Temperature: element.Temperature,
+          Wrist_ID: element.Wrist_ID,
+          Timestamp: new Date(element.Timestamp * 1000),
+        };
+      })
+    );
   });
 });
 
@@ -31,7 +41,5 @@ router.get("/:wristId", function (req, res, next) {
     res.send(result);
   });
 });
-
-
 
 module.exports = router;
