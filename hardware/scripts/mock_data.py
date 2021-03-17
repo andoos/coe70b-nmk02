@@ -20,7 +20,7 @@ BTdeviceB = wrist_id[randrange(6)]
 while BTdeviceA == BTdeviceB:
         BTdeviceB = wrist_id[randrange(6)]        
 
-distance = str(round(random.uniform(0, 2)))
+distance = str(round(random.uniform(0, 2), 1))
 # time = str(random.randrange(1615813200, 1615856400)) # March 15 2021 9:00 - 21:00
 time = str(random.randrange(1615899600, 1615942800)) # March 16 2021 9:00 - 21:00
 
