@@ -1,12 +1,21 @@
 var express = require("express");
-var router = express.Router();
 var cors = require("cors");
+var router = express.Router();
 
 const { db } = require("../database.js");
 
 /* GET all temperature readings*/
 router.get("/", cors(), function (req, res, next) {
-  const sqlQuery = "SELECT * FROM hardware.TemperatureEvent;";
+  if (req.query.startTime == null && req.query.endTime == null) {
+    sqlQuery = "SELECT * FROM hardware.TemperatureEvent;";
+  } else {
+    sqlQuery =
+      "SELECT * FROM hardware.TemperatureEvent WHERE Timestamp > " +
+      req.query.startTime +
+      " AND Timestamp < " +
+      req.query.endTime +
+      ";";
+  }
   db.query(sqlQuery, (err, result) => {
     res.send(result);
   });
@@ -22,5 +31,7 @@ router.get("/:wristId", function (req, res, next) {
     res.send(result);
   });
 });
+
+
 
 module.exports = router;
