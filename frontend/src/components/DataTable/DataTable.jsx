@@ -43,12 +43,14 @@ function DataTable(props) {
   const [bluetoothData, setbluetoothData] = useState([]);
   const [temperatureData, settemperatureData] = useState([]);
   const [flagData, setflagData] = useState([]);
+  const [refreshData, setRefreshData] = useState(1);
 
   useEffect(() => {
+    toggleRefresh();
     getBluetooth();
     getTemperature();
     getFlag();
-  }, []);
+  }, [refreshData, props.refresh]);
 
   const getBluetooth = async () => {
     const response = await fetch("http://localhost:5000/v1/api/bluetooth/");
@@ -66,6 +68,13 @@ function DataTable(props) {
     const response = await fetch ("http://localhost:5000/v1/api/credentials")
     const data = await response.json();
     setflagData(data)
+  }
+
+  const toggleRefresh = () => {
+    if (props.refresh == 1) {
+      setRefreshData(!refreshData);
+      props.setRefresh(0);
+    }
   }
 
   return (

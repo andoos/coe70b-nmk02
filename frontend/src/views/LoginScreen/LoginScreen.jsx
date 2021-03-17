@@ -23,13 +23,16 @@ const LoginScreen = (props) => {
   const [usernameInput, setUsernameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   
-  const useDidMountEffect = (func, deps) => {
+  const useDidMountEffect = (runFunction, trigger) => {
     const didMount = useRef(false);
 
     useEffect(() => {
-      if (didMount.current) func();
-      else didMount.current = true;
-    }, deps);
+      if (didMount.current) {
+        runFunction();
+      } else {
+        didMount.current = true;
+      }
+    }, trigger);
   }
 
   useDidMountEffect(() => {

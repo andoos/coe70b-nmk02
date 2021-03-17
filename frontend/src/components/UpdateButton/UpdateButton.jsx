@@ -4,12 +4,12 @@ import { Button, UncontrolledTooltip } from "reactstrap";
 
 import UpdateStyles from "./UpdateButton.module.css";
 
-const doUpdate = () => {
-  console.log("The update button was clicked.");
-  alert("updated.");
-};
+function UpdateButton(props) {
+  const doUpdate = () => {
+    console.log("The update button was clicked.");
+    props.setRefresh(1)
+  };
 
-function UpdateButton() {
   return (
     <div className={UpdateStyles.UpdateButton} id="update">
       <Button className="btn-round btn-icon" color="info" onClick={doUpdate}>

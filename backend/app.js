@@ -5,7 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+var employeeRouter = require("./routes/employee");
 var credentialsRouter = require("./routes/credentials");
 var temperatureRouter = require("./routes/temperature");
 var bluetoothRouter = require("./routes/bluetooth");
@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/v1/api/employee", employeeRouter);
 app.use("/v1/api/credentials", credentialsRouter);
 app.use("/v1/api/temperature", temperatureRouter);
 app.use("/v1/api/bluetooth", bluetoothRouter);
