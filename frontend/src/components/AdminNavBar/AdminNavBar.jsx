@@ -6,7 +6,7 @@ import UpdateButton from "../UpdateButton/UpdateButton.jsx";
 import LogoutButton from "../LogoutButton/LogoutButton.jsx";
 import SettingsButton from "../SettingsButton/SettingsButton.jsx";
 
-function AdminNavBar() {
+function AdminNavBar(props) {
   return (
     <div className="navbar-dark">
       <Navbar expand="lg" color="dark">
@@ -16,7 +16,7 @@ function AdminNavBar() {
           </span>
           <div>
             <SettingsButton />
-            <UpdateButton />
+            <UpdateButton setRefresh = {props.setRefresh} />
             <LogoutButton />
           </div>
         </Container>
