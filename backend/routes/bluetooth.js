@@ -62,4 +62,13 @@ router.get("/sum", cors(), function (req, res, next) {
   });
 });
 
+/* api for graph data */
+router.get("/graph", cors(), function (req, res, next) {
+  const sqlQuery =
+    "SELECT 2 * Count(BluetoothEventID) AS Employee, DATE_FORMAT(FROM_UNIXTIME(Timestamp - (4 * 3600)), '%H:00') AS Hour FROM hardware.BluetoothEvent WHERE Timestamp >= 1615867200 AND Timestamp <= 1615953599 GROUP BY HOUR ORDER BY HOUR ASC;";
+  db.query(sqlQuery, (err, result) => {
+    res.send(result);
+  });
+});
+
 module.exports = router;
