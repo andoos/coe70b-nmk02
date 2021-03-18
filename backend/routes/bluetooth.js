@@ -10,12 +10,6 @@ router.get("/", cors(), function (req, res, next) {
   if (req.query.startTime == null && req.query.endTime == null) {
     sqlQuery = "SELECT * FROM hardware.BluetoothEvent;";
   } else {
-    // sqlQuery =
-    //   "SELECT * FROM hardware.BluetoothEvent WHERE Timestamp > " +
-    //   req.query.startTime +
-    //   " AND Timestamp < " +
-    //   req.query.endTime +
-    //   ";";
     sqlQuery =
       "SELECT t1.BluetoothEventID, t2.EmployeeName AS EmployeeA, t3.EMployeeName AS EmployeeB, t1.Distance, t1.Timestamp FROM (SELECT * FROM hardware.BluetoothEvent WHERE Timestamp > " +
       req.query.startTime +
