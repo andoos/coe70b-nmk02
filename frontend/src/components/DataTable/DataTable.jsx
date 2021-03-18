@@ -18,7 +18,7 @@ const renderbluetoothData = (employee, index) => {
 const rendertemperatureData = (employee, index) => {
   return (
     <tr key={index.idTemperatureEvent_NEW}>
-      <td>{employee.Wrist_ID}</td>
+      <td>{employee.EmployeeName}</td>
       <td>{employee.Temperature}</td>
       <td>{employee.Timestamp}</td>
     </tr>
@@ -59,7 +59,9 @@ function DataTable(props) {
   };
 
   const getTemperature = async () => {
-    const response = await fetch("http://localhost:5000/v1/api/temperature/");
+    const response = await fetch(
+      "http://localhost:5000/v1/api/temperature?startTime=1615813200&endTime=1615856400"
+    );
     const data = await response.json();
     settemperatureData(data);
   };
