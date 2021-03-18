@@ -21,7 +21,6 @@ const rendertemperatureData = (employee, index) => {
       <td>{employee.Wrist_ID}</td>
       <td>{employee.Temperature}</td>
       <td>{employee.Timestamp}</td>
-      <td>{employee.shiftend}</td>
     </tr>
   )
 }

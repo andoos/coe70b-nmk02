@@ -38,7 +38,7 @@ function AdminDashboard() {
 
         </Col>
         <Col>
-        <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData}  title = "Employees with High Temperatures" header1 = "Employee" header2 = "Temperature (Celsius)" header3 = "Shift Start" header4 = "Shift End" data = "temperatureData"/></div>
+        <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData}  title = "Employees with High Temperatures" header1 = "Employee" header2 = "Temperature (Celsius)" header3 = "Time" data = "temperatureData"/></div>
           
         </Col>
         <Col>

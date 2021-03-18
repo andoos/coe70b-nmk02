@@ -24,7 +24,7 @@ router.get("/", cors(), function (req, res, next) {
           TemperatureEventID: element.TemperatureEventID,
           Temperature: element.Temperature,
           Wrist_ID: element.Wrist_ID,
-          Timestamp: new Date(element.Timestamp * 1000),
+          Timestamp: new Date(element.Timestamp * 1000).toLocaleString(),
         };
       })
     );
