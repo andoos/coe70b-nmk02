@@ -30,7 +30,7 @@ function AdminDashboard() {
       <ul></ul>
       <Row>
         <Col>
-          <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData} title = "Employees not Social Distancing" header1 = "Employee 1" header2 = "Employee 2" header3 = "Distance (m)" header4 = "Duration (mins)" data = "bluetoothData"/></div>
+          <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData} title = "Employees not Social Distancing" header1 = "Employee 1" header2 = "Employee 2" header3 = "Distance (m)" header4 = "Time" data = "bluetoothData"/></div>
           
           {/* {table.map(tbl => (
             <DataTable title = {tbl.title} data = {tbl.data}/>
