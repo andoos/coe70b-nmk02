@@ -10,13 +10,15 @@ import { useEffect, useState } from "react";
 
 var employeesNoDistancing = [];
 
-function BarGraph() {
+function BarGraph(props) {
   
   const [bluetoothData, setbluetoothData] = useState([]);
+  const [refreshData, setRefreshData] = useState(1);
 
   useEffect(() => {
+    toggleRefresh();
     getBluetooth();
-  }, []);
+  }, [refreshData, props.refresh]);
 
   const getBluetooth = async () => {
     const response = await fetch("http://localhost:5000/v1/api/bluetooth/graph");
@@ -36,10 +38,17 @@ function BarGraph() {
         employeesNoDistancing.push(0);
       }
     }
-    console.log(employeesNoDistancing);
     setbluetoothData(data);
   }
   
+  const toggleRefresh = () => {
+    if (props.refresh == 1) {
+      setRefreshData(!refreshData);
+      employeesNoDistancing = [];
+      props.setRefresh(0);
+    }
+  };
+
   return (
     <Card className="card-chart">
       <CardHeader>

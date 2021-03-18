@@ -48,7 +48,7 @@ function AdminDashboard() {
       </Row>
       <Row>
         <Col>
-          <BarGraph />
+          <BarGraph refresh = {isRefreshData} setRefresh = {setIsRefreshData} />
         </Col>
         {/* <Col>
           <BarGraph />
