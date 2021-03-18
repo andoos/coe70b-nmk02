@@ -5,7 +5,7 @@ const { db } = require("../database.js");
 
 /* GET user credentials stored in user credentials table*/
 router.get("/", function (req, res, next) {
-  const sqlQuery = "SELECT * FROM hardware.UserCredentials WHERE Id = 1;";
+  sqlQuery = "SELECT * FROM hardware.UserCredentials WHERE Id = 1;";
   db.query(sqlQuery, (err, result) => {
     console.log(result);
     res.send({

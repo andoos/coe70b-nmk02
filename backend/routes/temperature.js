@@ -5,7 +5,7 @@ var router = express.Router();
 const { db } = require("../database.js");
 const e = require("express");
 
-/* GET all temperature readings*/
+/* GET all temperature readings */
 router.get("/", cors(), function (req, res, next) {
   if (req.query.startTime == null && req.query.endTime == null) {
     sqlQuery = "SELECT * FROM hardware.TemperatureEvent;";
@@ -33,7 +33,7 @@ router.get("/", cors(), function (req, res, next) {
 
 /* GET all temperature readings for a wrist id*/
 router.get("/:wristId", function (req, res, next) {
-  const sqlQuery =
+  sqlQuery =
     "SELECT * FROM hardware.TemperatureEvent WHERE Wrist_ID='" +
     req.params.wristId +
     "';";

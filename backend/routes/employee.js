@@ -7,7 +7,7 @@ const { db } = require("../database.js");
 /* GET all employee readings, query paramters to get readings for a day */
 router.get("/", cors(), function (req, res, next) {
   if (req.query.startTime == null && req.query.endTime == null) {
-    const sqlQuery = "SELECT * FROM hardware.Employees";
+    sqlQuery = "SELECT * FROM hardware.Employees";
     db.query(sqlQuery, (err, result) => {
       res.send(result);
     });
