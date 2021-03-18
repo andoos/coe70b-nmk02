@@ -42,7 +42,7 @@ function AdminDashboard() {
           
         </Col>
         <Col>
-        <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData}  title = "Employees to be sent home" header1 = "Employee" header2 = "FLAG" header3 = "Shift Start" header4 = "Shift End" data = "flagData"/></div>
+        <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData}  title = "Employees to be sent home" header1 = "Employee" header2 = "Flags" header3 = "Shift Start" header4 = "Shift End" data = "flagData"/></div>
           
         </Col>
       </Row>

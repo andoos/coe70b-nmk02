@@ -29,10 +29,10 @@ const rendertemperatureData = (employee, index) => {
 const renderflagData = (employee, index) => {
   return (
     <tr key={index}>
-      <td>{employee.employee}</td>
-      <td>{employee.flag}</td>
-      <td>{employee.shiftstart}</td>
-      <td>{employee.shiftend}</td>
+      <td>{employee.EmployeeName}</td>
+      <td>{employee.Flags}</td>
+      <td>{employee.ShiftStart}</td>
+      <td>{employee.ShiftEnd}</td>
     </tr>
   );
 };
@@ -67,9 +67,11 @@ function DataTable(props) {
   };
 
   const getFlag = async () => {
-    // const response = await fetch("/v1/api/credentials");
-    // const data = await response.json();
-    // setflagData(data);
+      const response = await fetch(
+        "/v1/api/employee/flag?startTime=1615813200&endTime=1615856400"
+      );
+      const data = await response.json();
+      setflagData(data);
   };
 
   const toggleRefresh = () => {
