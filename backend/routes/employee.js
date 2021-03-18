@@ -39,7 +39,17 @@ router.get("/flag", cors(), function (req, res, next) {
       req.query.endTime +
       " GROUP BY hardware.Employees.EmployeeName ORDER BY Flags DESC;";
     db.query(sqlQuery, (err, result) => {
-      res.send(result);
+      res.send(
+        result.map((element) => {
+          return {
+            //TemperatureEventID: element.TemperatureEventID,
+            EmployeeName: element.EmployeeName,
+            Flags: element.Flags,
+            ShiftStart: new Date(element.ShiftStart * 1000).toLocaleString(),
+            ShiftEnd: new Date(element.ShiftEnd * 1000).toLocaleString(),            
+          };
+        })
+      );
     });
   }
 });
