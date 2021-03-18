@@ -4,42 +4,40 @@ import { Card, CardBody, CardHeader, CardTitle, Table } from "reactstrap";
 
 // Render Bluetooth Data in Table
 const renderbluetoothData = (employee, index) => {
-  return(
-    <tr key = {index.idBluetoothEvent_NEW}>
-      <td>{employee.Wrist_ID_A}</td>
-      <td>{employee.Wrist_ID_B}</td>
+  return (
+    <tr key={index.idBluetoothEvent_NEW}>
+      <td>{employee.EmployeeA}</td>
+      <td>{employee.EmployeeB}</td>
       <td>{employee.Distance}</td>
       <td>{employee.Timestamp}</td>
     </tr>
-  )
-}
+  );
+};
 
 // Render Temperature Data in Table
 const rendertemperatureData = (employee, index) => {
-  return(
-    <tr key = {index.idTemperatureEvent_NEW}>
-      <td>{employee.Wrist_ID}</td>
+  return (
+    <tr key={index.idTemperatureEvent_NEW}>
+      <td>{employee.EmployeeName}</td>
       <td>{employee.Temperature}</td>
       <td>{employee.Timestamp}</td>
-      <td>{employee.shiftend}</td>
     </tr>
-  )
-}
+  );
+};
 
 // Render Flag Data in Table
 const renderflagData = (employee, index) => {
-  return(
-    <tr key = {index}>
+  return (
+    <tr key={index}>
       <td>{employee.employee}</td>
       <td>{employee.flag}</td>
       <td>{employee.shiftstart}</td>
       <td>{employee.shiftend}</td>
     </tr>
-  )
-}
+  );
+};
 
 function DataTable(props) {
-
   const [bluetoothData, setbluetoothData] = useState([]);
   const [temperatureData, settemperatureData] = useState([]);
   const [flagData, setflagData] = useState([]);
@@ -53,29 +51,33 @@ function DataTable(props) {
   }, [refreshData, props.refresh]);
 
   const getBluetooth = async () => {
-    const response = await fetch("http://localhost:5000/v1/api/bluetooth/");
+    const response = await fetch(
+      "/v1/api/bluetooth?startTime=1615813200&endTime=1615856400" // Hardcoded for March 15 9AM - 9PM
+    );
     const data = await response.json();
     setbluetoothData(data);
-  }
+  };
 
   const getTemperature = async () => {
-    const response = await fetch("http://localhost:5000/v1/api/temperature/")
+    const response = await fetch(
+      "/v1/api/temperature?startTime=1615813200&endTime=1615856400" // Hardcoded for March 15 9AM - 9PM
+    );
     const data = await response.json();
     settemperatureData(data);
-  }
+  };
 
   const getFlag = async () => {
-    const response = await fetch ("http://localhost:5000/v1/api/credentials")
-    const data = await response.json();
-    setflagData(data)
-  }
+    // const response = await fetch("/v1/api/credentials");
+    // const data = await response.json();
+    // setflagData(data);
+  };
 
   const toggleRefresh = () => {
     if (props.refresh == 1) {
       setRefreshData(!refreshData);
       props.setRefresh(0);
     }
-  }
+  };
 
   return (
     <Card>
@@ -93,8 +95,12 @@ function DataTable(props) {
             </tr>
           </thead>
           <tbody>
-            {props.data == "bluetoothData" ? bluetoothData.map(renderbluetoothData) : null}
-            {props.data == "temperatureData" ? temperatureData.map(rendertemperatureData) : null}
+            {props.data == "bluetoothData"
+              ? bluetoothData.map(renderbluetoothData)
+              : null}
+            {props.data == "temperatureData"
+              ? temperatureData.map(rendertemperatureData)
+              : null}
             {props.data == "flagData" ? flagData.map(renderflagData) : null}
           </tbody>
         </Table>

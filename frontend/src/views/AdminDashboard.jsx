@@ -30,7 +30,7 @@ function AdminDashboard() {
       <ul></ul>
       <Row>
         <Col>
-          <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData} title = "Employees not Social Distancing" header1 = "Employee 1" header2 = "Employee 2" header3 = "Distance (m)" header4 = "Duration (mins)" data = "bluetoothData"/></div>
+          <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData} title = "Employees not Social Distancing" header1 = "Employee 1" header2 = "Employee 2" header3 = "Distance (m)" header4 = "Time" data = "bluetoothData"/></div>
           
           {/* {table.map(tbl => (
             <DataTable title = {tbl.title} data = {tbl.data}/>
@@ -38,7 +38,7 @@ function AdminDashboard() {
 
         </Col>
         <Col>
-        <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData}  title = "Employees with High Temperatures" header1 = "Employee" header2 = "Temperature (Celsius)" header3 = "Shift Start" header4 = "Shift End" data = "temperatureData"/></div>
+        <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData}  title = "Employees with High Temperatures" header1 = "Employee" header2 = "Temperature (Celsius)" header3 = "Time" data = "temperatureData"/></div>
           
         </Col>
         <Col>
@@ -48,7 +48,7 @@ function AdminDashboard() {
       </Row>
       <Row>
         <Col>
-          <BarGraph />
+          <BarGraph refresh = {isRefreshData} setRefresh = {setIsRefreshData} />
         </Col>
         {/* <Col>
           <BarGraph />
