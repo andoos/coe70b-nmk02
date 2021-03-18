@@ -3,7 +3,7 @@ var router = express.Router();
 
 const { db } = require("../database.js");
 
-/* GET user credentials stored in user credentials table*/
+/* GET user credentials for administrator */
 router.get("/", function (req, res, next) {
   sqlQuery = "SELECT * FROM hardware.UserCredentials WHERE Id = 1;";
   db.query(sqlQuery, (err, result) => {
@@ -13,7 +13,6 @@ router.get("/", function (req, res, next) {
       password: result[0].Password,
     });
   });
-  //res.render("index", { title: "Express" });
 });
 
 module.exports = router;

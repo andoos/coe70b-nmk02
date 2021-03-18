@@ -5,7 +5,7 @@ var cors = require("cors");
 const { db } = require("../database.js");
 const { request } = require("express");
 
-/* GET all bluetooth readings*/
+/* GET all bluetooth readings */
 router.get("/", cors(), function (req, res, next) {
   if (req.query.startTime == null && req.query.endTime == null) {
     sqlQuery = "SELECT * FROM hardware.BluetoothEvent;";
