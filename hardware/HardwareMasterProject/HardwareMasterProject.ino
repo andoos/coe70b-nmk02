@@ -162,7 +162,6 @@ void setup() {
 
 }
 
-String deviceMACid = WiFi.macAddress();
 
 void loop() {
 
@@ -203,7 +202,7 @@ void loop() {
 void checkTemp(float temperature){
   currentTime = time(nullptr);
   if (temperature>28.0) {
-    String msg = String("{\"type\": \"TemperatureEvent\", \"temperature\" : \""+String(temperature)+"\", \"deviceID\" : \""+deviceMACid+"\", \"time\" :  \""+currentTime+"\"}");
+    String msg = String("{\"type\": \"TemperatureEvent\", \"temperature\" : \""+String(temperature)+"\", \"deviceID\" : \""+MACID+"\", \"time\" :  \""+currentTime+"\"}");
     pubSubClient.publish("outTopic", msg.c_str());
     Serial.print("Published: "); Serial.println(msg);
   }
@@ -257,7 +256,7 @@ void checkDistance(int RSI, String MACother){
   if(RSI>65477){
     Serial.println("test rssi check");
     //not social distancing
-    msg = String("{\"type\": \"BluetoothEvent\", \"distance\" : \""+String(RSI)+"\", \"deviceIDA\" : \""+deviceMACid+"\", \"deviceIDB\": \""+MACother+"\", \"time\" :  \""+"1615846361"+"\"}");
+    msg = String("{\"type\": \"BluetoothEvent\", \"distance\" : \""+String(RSI)+"\", \"deviceIDA\" : \""+MACID+"\", \"deviceIDB\": \""+MACother+"\", \"time\" :  \""+time(nullptr)+"\"}");
     pubSubClient.publish("outTopic", msg.c_str());
     Serial.print("Published: "); Serial.println(msg);
     inquiring = false;
