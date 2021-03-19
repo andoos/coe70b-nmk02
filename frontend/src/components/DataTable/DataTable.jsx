@@ -1,63 +1,86 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Card, CardBody, CardHeader, CardTitle, Table } from "reactstrap";
 
-// Bluetooth Data
-const bluetoothData = [
-  {employeeA: "Jacob", employeeB: "Kevin", distance: 1.3, duration: 20},
-  {employeeA: "Raymond", employeeB: "Jane", distance: 0.5, duration: 5},
-  {employeeA: "Debra", employeeB: "Dave", distance: 1.4, duration: 50}
-]
-
-// Temperature Data
-const temperatureData = [
-  {employee: "Debra", temperature: 39.3, shiftstart: 900, shiftend: 2100},
-  {employee: "Andrew", temperature: 39, shiftstart: 600, shiftend: 1800},
-  {employee: "Omar", temperature: 38.6, shiftstart: 900, shiftend: 2100},
-  {employee: "Karen", temperature: 38, shiftstart: 330, shiftend: 1530}
-]
-
-// Flag Data
-const flagData = [
-  {employee: "Debra", flag: "TRUE", shiftstart: 900, shiftend: 2100}
-]
-
 // Render Bluetooth Data in Table
 const renderbluetoothData = (employee, index) => {
-  return(
-    <tr key = {index}>
-      <td>{employee.employeeA}</td>
-      <td>{employee.employeeB}</td>
-      <td>{employee.distance}</td>
-      <td>{employee.duration}</td>
+  return (
+    <tr key={index.idBluetoothEvent_NEW}>
+      <td>{employee.EmployeeA}</td>
+      <td>{employee.EmployeeB}</td>
+      <td>{employee.Distance}</td>
+      <td>{employee.Timestamp}</td>
     </tr>
-  )
-}
+  );
+};
 
 // Render Temperature Data in Table
 const rendertemperatureData = (employee, index) => {
-  return(
-    <tr key = {index}>
-      <td>{employee.employee}</td>
-      <td>{employee.temperature}</td>
-      <td>{employee.shiftstart}</td>
-      <td>{employee.shiftend}</td>
+  return (
+    <tr key={index.idTemperatureEvent_NEW}>
+      <td>{employee.EmployeeName}</td>
+      <td>{employee.Temperature}</td>
+      <td>{employee.Timestamp}</td>
     </tr>
-  )
-}
+  );
+};
 
 // Render Flag Data in Table
 const renderflagData = (employee, index) => {
-  return(
-    <tr key = {index}>
-      <td>{employee.employee}</td>
-      <td>{employee.flag}</td>
-      <td>{employee.shiftstart}</td>
-      <td>{employee.shiftend}</td>
+  return (
+    <tr key={index}>
+      <td>{employee.EmployeeName}</td>
+      <td>{employee.Flags}</td>
+      <td>{employee.ShiftStart}</td>
+      <td>{employee.ShiftEnd}</td>
     </tr>
-  )
-}
+  );
+};
+
 function DataTable(props) {
+  const [bluetoothData, setbluetoothData] = useState([]);
+  const [temperatureData, settemperatureData] = useState([]);
+  const [flagData, setflagData] = useState([]);
+  const [refreshData, setRefreshData] = useState(1);
+
+  useEffect(() => {
+    toggleRefresh();
+    getBluetooth();
+    getTemperature();
+    getFlag();
+  }, [refreshData, props.refresh]);
+
+  const getBluetooth = async () => {
+    const response = await fetch(
+      "/v1/api/bluetooth?startTime=1615813200&endTime=1615856400" // Hardcoded for March 15 9AM - 9PM
+    );
+    const data = await response.json();
+    setbluetoothData(data);
+  };
+
+  const getTemperature = async () => {
+    const response = await fetch(
+      "/v1/api/temperature?startTime=1615813200&endTime=1615856400" // Hardcoded for March 15 9AM - 9PM
+    );
+    const data = await response.json();
+    settemperatureData(data);
+  };
+
+  const getFlag = async () => {
+      const response = await fetch(
+        "/v1/api/employee/flag?startTime=1615813200&endTime=1615856400"
+      );
+      const data = await response.json();
+      setflagData(data);
+  };
+
+  const toggleRefresh = () => {
+    if (props.refresh == 1) {
+      setRefreshData(!refreshData);
+      props.setRefresh(0);
+    }
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -74,8 +97,12 @@ function DataTable(props) {
             </tr>
           </thead>
           <tbody>
-            {props.data == "bluetoothData" ? bluetoothData.map(renderbluetoothData) : null}
-            {props.data == "temperatureData" ? temperatureData.map(rendertemperatureData) : null}
+            {props.data == "bluetoothData"
+              ? bluetoothData.map(renderbluetoothData)
+              : null}
+            {props.data == "temperatureData"
+              ? temperatureData.map(rendertemperatureData)
+              : null}
             {props.data == "flagData" ? flagData.map(renderflagData) : null}
           </tbody>
         </Table>

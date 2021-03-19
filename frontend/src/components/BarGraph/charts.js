@@ -22,6 +22,8 @@
 // #########################################
 // // // used inside src/views/Dashboard.js
 // #########################################
+
+
 let chartExample3 = {
   data: (canvas) => {
     let ctx = canvas.getContext("2d");
@@ -33,7 +35,7 @@ let chartExample3 = {
     gradientStroke.addColorStop(0, "rgba(119,52,169,0)"); //purple colors
 
     return {
-      labels: ["8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+      labels: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
       datasets: [
         {
           label: "Number of Employees in Close Contact",
