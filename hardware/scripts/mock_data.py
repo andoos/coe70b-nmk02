@@ -5,12 +5,15 @@ import datetime
 
 from random import randrange
 
-wrist_id = ["84:CC:A8:A4:41:79", # small breadboard (actual prototype)
-            "84:CC:A8:AA:AE:7C", # big breadboard (actual prototype)
+wrist_id = ["84:CC:A8:A4:41:79", 
+            "84:CC:A8:AA:AE:7C", 
             "84:CC:A8:DA:32:EC", 
             "84:CC:A8:51:C8:AD", 
             "84:CC:A8:64:65:DC",
-            "84:CC:A8:EA:1B:78"]
+            "84:CC:A8:EA:1B:78",
+            "00:20:09:00:05:02", # small breadboard (actual prototype)
+            "00:20:08:00:1A:C1"  # big breadboard (actual prototype)
+]
 
 # generate a bluetooth event 
 BTdeviceA = wrist_id[randrange(6)]

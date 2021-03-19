@@ -16,8 +16,6 @@ MAX30205 tempSensor;
 #endif
 #endif
 
-SoftwareSerial BTserial(D5,D6); // RX | TX
-
 const char* ssid = "TheEmpireDidNothingWrong";
 const char* password = "kenobi69";
 
@@ -113,24 +111,31 @@ WiFiClientSecure wiFiClient;
 void msgReceived(char* topic, byte* payload, unsigned int len);
 PubSubClient pubSubClient(awsEndpoint, 8883, msgReceived, wiFiClient); 
 
-unsigned long lastPublish;
-
-char c=' ';
-char d = ' ';
+SoftwareSerial BTserial(D5,D6); // RX | TX
+const long baudRate = 38400;
+String response;
+char *inq = "AT+INQ\r\n";
 String msg;
-String temperature = "0.0";
-boolean NL = true;
 int n=0;
-String currentTime = "0";
+boolean responded=false;
+String MACID;
+String MACother;
+int RSI;
+boolean MACidSet = false;
+long currentTime;
+boolean inquiring=false;
 
 void setup() {
-  Serial.begin(38400); Serial.println();
+
+  Serial.begin(baudRate); Serial.println();
   Serial.println("NMK02 Master Hardware Script");
 
+  BTserial.begin(baudRate); 
+  
   Serial.print("Connecting to "); Serial.print(ssid);
   WiFi.begin(ssid, password);
   WiFi.waitForConnectResult();
-  Serial.print(", WiFi connected, IP address: "); Serial.println(WiFi.localIP()); Serial.println(WiFi.macAddress());
+  Serial.print(", WiFi connected, IP address: "); Serial.println(WiFi.localIP());
 
   // get current time, otherwise certificates are flagged as expired
   setCurrentTime();
@@ -151,24 +156,56 @@ void setup() {
   Wire.begin();
   tempSensor.scanAvailableSensors();
   tempSensor.begin();
-  delay(1000);
+
+  currentTime = time(nullptr);
+  
+
 }
 
 String deviceMACid = WiFi.macAddress();
 
 void loop() {
 
+  setMacID();
   pubSubCheckConnect();
 
-  temperature = String(tempSensor.getTemperature()); // receive a byte as character
-  currentTime = String(time(nullptr));
-  
+  if(time(nullptr) >= (currentTime + 45)){
+     checkTemp(tempSensor.getTemperature());
+  }
+  // receive a byte as character
 
-  if (millis() - lastPublish > 10000) {
-    String msg = String("{\"type\": \"TemperatureEvent\", \"temperature\" : \""+temperature+"\", \"deviceID\" : \""+deviceMACid+"\", \"time\" :  \""+currentTime+"\"}");
+  if(!inquiring){
+     Serial.println("test timer");
+     BTserial.write(inq);
+     inquiring=true;
+  }
+  
+  
+  if(responded){
+    if(response!="OK\r\n"){
+      MACother = response.substring(5,7) + ":" + response.substring(7,15) + ":" + response.substring(15,17) + ":" + response.substring(17,19);
+      RSI = strtol(response.substring(25,29).c_str(), NULL, 16);
+      Serial.print("recieved: "+MACother+" "+RSI);
+      responded = false;
+      checkDistance(RSI, MACother);
+      RSI = 0;
+    }
+  }
+  while (BTserial.available()){// if theres data on the software serial read it and print it to serial
+        msg = BTserial.readString();
+        response+=msg;
+        responded = true;
+        //Serial.print(msg);
+  }
+
+}
+
+void checkTemp(float temperature){
+  currentTime = time(nullptr);
+  if (temperature>28.0) {
+    String msg = String("{\"type\": \"TemperatureEvent\", \"temperature\" : \""+String(temperature)+"\", \"deviceID\" : \""+deviceMACid+"\", \"time\" :  \""+currentTime+"\"}");
     pubSubClient.publish("outTopic", msg.c_str());
     Serial.print("Published: "); Serial.println(msg);
-    lastPublish = millis();
   }
 }
 
@@ -214,4 +251,38 @@ void setCurrentTime() {
   struct tm timeinfo;
   gmtime_r(&now, &timeinfo);
   Serial.print("Current time: "); Serial.print(asctime(&timeinfo));
+}
+
+void checkDistance(int RSI, String MACother){
+  if(RSI>65477){
+    Serial.println("test rssi check");
+    //not social distancing
+    msg = String("{\"type\": \"BluetoothEvent\", \"distance\" : \""+String(RSI)+"\", \"deviceIDA\" : \""+deviceMACid+"\", \"deviceIDB\": \""+MACother+"\", \"time\" :  \""+"1615846361"+"\"}");
+    pubSubClient.publish("outTopic", msg.c_str());
+    Serial.print("Published: "); Serial.println(msg);
+    inquiring = false;
+  }
+}
+
+void setMacID(){
+  //23:57:17.689 -> +ADDR:0020:08:001AC1
+  //23:57:17.689 -> OK
+  String macmsg;
+  String macresponse;
+  char *getmacid = "AT+ADDR?\r\n";
+  
+  if(!MACidSet){
+    BTserial.write(getmacid);
+    
+    while (true){// if theres data on the software serial read it and print it to serial
+      if(BTserial.available()){
+          macmsg = BTserial.readString();
+          macresponse+=macmsg;
+          break;
+      }
+    }
+    MACID = macresponse.substring(6,8) + ":" + macresponse.substring(8,16) + ":" + macresponse.substring(16,18) + ":" + macresponse.substring(18,20);
+    Serial.println("Bluetooth MAC addr: "+MACID);
+    MACidSet = true;
+  }
 }
