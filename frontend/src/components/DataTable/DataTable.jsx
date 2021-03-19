@@ -52,7 +52,7 @@ function DataTable(props) {
 
   const getBluetooth = async () => {
     const response = await fetch(
-      "/v1/api/bluetooth?startTime=1615813200&endTime=1615856400" // Hardcoded for March 15 9AM - 9PM
+      "/v1/api/bluetooth?startTime=1616158800&endTime=1616202000" // Hardcoded for March 15 9AM - 9PM
     );
     const data = await response.json();
     setbluetoothData(data);
@@ -60,7 +60,7 @@ function DataTable(props) {
 
   const getTemperature = async () => {
     const response = await fetch(
-      "/v1/api/temperature?startTime=1615813200&endTime=1615856400" // Hardcoded for March 15 9AM - 9PM
+      "/v1/api/temperature?startTime=1616158800&endTime=1616202000" // Hardcoded for March 15 9AM - 9PM
     );
     const data = await response.json();
     settemperatureData(data);
@@ -68,7 +68,7 @@ function DataTable(props) {
 
   const getFlag = async () => {
       const response = await fetch(
-        "/v1/api/employee/flag?startTime=1615813200&endTime=1615856400"
+        "/v1/api/employee/flag?startTime=1616158800&endTime=1616202000"
       );
       const data = await response.json();
       setflagData(data);
