@@ -5,6 +5,7 @@ import { Container, Row, Col, CardDeck, CardColumns } from "reactstrap";
 import AdminNavBar from "../components/AdminNavBar/AdminNavBar.jsx";
 import DataTable from "../components/DataTable/DataTable.jsx";
 import BarGraph from "../components/BarGraph/BarGraph.jsx";
+import Recommendation from "../components/Recommendation/Recommendation.jsx";
 
 //import "./assets/css/App.css";
 //import BlackDashboardStyles from "./assets/css/black-dashboard-react.css";
@@ -28,32 +29,29 @@ function AdminDashboard() {
     <Container fluid>
       <AdminNavBar setRefresh = {setIsRefreshData}></AdminNavBar>
       <ul></ul>
+      
       <Row>
         <Col>
           <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData} title = "Employees not Social Distancing" header1 = "Employee 1" header2 = "Employee 2" header3 = "Distance (m)" header4 = "Time" data = "bluetoothData"/></div>
-          
-          {/* {table.map(tbl => (
-            <DataTable title = {tbl.title} data = {tbl.data}/>
-          ))} */}
-
         </Col>
         <Col>
-        <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData}  title = "Employees with High Temperatures" header1 = "Employee" header2 = "Temperature (Celsius)" header3 = "Time" data = "temperatureData"/></div>
-          
+          <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData}  title = "Employees with High Temperatures" header1 = "Employee" header2 = "Temperature (Celsius)" header3 = "Time" data = "temperatureData"/></div>      
         </Col>
         <Col>
-        <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData}  title = "Employees to be sent home" header1 = "Employee" header2 = "Flags" header3 = "Shift Start" header4 = "Shift End" data = "flagData"/></div>
-          
+          <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData}  title = "Employees to be sent home" header1 = "Employee" header2 = "Flags" header3 = "Shift Start" header4 = "Shift End" data = "flagData"/></div>
         </Col>
       </Row>
       <Row>
         <Col>
           <BarGraph refresh = {isRefreshData} setRefresh = {setIsRefreshData} />
         </Col>
-        {/* <Col>
-          <BarGraph />
-        </Col> */}
       </Row>
+      <Row>
+        <Col>
+          <Recommendation title = "Recommendation" />
+        </Col>
+      </Row>
+
     </Container>
   );
 }

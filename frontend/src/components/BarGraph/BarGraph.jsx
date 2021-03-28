@@ -52,10 +52,10 @@ function BarGraph(props) {
   return (
     <Card className="card-chart">
       <CardHeader>
-        <h5 className="card-category">Sum of Employees not Social Distancing</h5>
-        {/* <CardTitle tag="h3">
-          <i className="tim-icons icon-delivery-fast text-primary" /> 3,500€
-        </CardTitle> */}
+        <h4 className="card-category"></h4>
+        <CardTitle tag="h4">
+          {/*<i className="tim-icons icon-delivery-fast text-primary" /> 3,500€ */}Sum of Employees not Social Distancing
+        </CardTitle>
       </CardHeader>
       <CardBody>
         <div className="chart-area">
@@ -146,3 +146,4 @@ function BarGraph(props) {
 //   employeesNoDistancing
 // };
 export default BarGraph;
+export const hotspots = employeesNoDistancing;
