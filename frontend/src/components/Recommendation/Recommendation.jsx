@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Card, CardBody, CardHeader, CardTitle, Table } from "reactstrap";
 
 import { hotspots } from "../BarGraph/BarGraph.jsx";
+//import the flag data to get the names that are above the median count
 
 function Recommendation(props) {
 
@@ -12,16 +13,23 @@ function Recommendation(props) {
     var date = today.getDate();
 
     console.log(hotspots);
-    let unsortedhotspots = hotspots;
+    let unsortedhotspots = [];
+    for(var i = 0; i < hotspots.length; i++) {
+      unsortedhotspots.push(hotspots[i])
+    }
+    
+    console.log(unsortedhotspots);
     let sortedhotspots = hotspots;
     sortedhotspots.sort((a,b) => b - a);
     console.log(sortedhotspots);
+    console.log(unsortedhotspots);
     for(var j = sortedhotspots.length; j > 0; j--) {
         if(sortedhotspots[j] == 0) {
             sortedhotspots.splice(j, 1);
         }
     }
     console.log(sortedhotspots);
+    console.log(unsortedhotspots);
 
     // get the median number, the recommendation will recommend times where the count was greater than the median
     let lowMiddle = Math.floor((sortedhotspots.length - 1) / 2);
@@ -30,14 +38,13 @@ function Recommendation(props) {
     console.log(median);
     let times = [];
 
-    //ERROR: for some reason, hotspots gets trimmed into whatever sortedhotspots was, even though i never edit it... 
     console.log(unsortedhotspots);
-    for (var i = 0; i < hotspots.length; i++) {
+    for (var i = 0; i < 24; i++) {
         if(i == 0) {
             times = [];
         }
-        if (hotspots[i] > median) {
-            console.log(hotspots[i]);
+        if (unsortedhotspots[i] > median) {
+            console.log(unsortedhotspots[i]);
             var time = i + ':00';
             console.log(time);
             times.push(time);
