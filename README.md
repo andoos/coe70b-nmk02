@@ -1,18 +1,23 @@
-# CONTACT TRACING WRIST BAND WITH TEMPERATURE SENSOR AND CLOUD-BASED MONITORING
+# NMK02: Contact Tracing Wrist Band with Temperature Sensor and Cloud-Based Monitoring
 
-### FLC 
-Naimul Mefraz Khan 
+### FLC
 
-### Topic Category 
-Software Systems 
+Naimul Mefraz Khan
 
-### Preamble 
+### Topic Category
+
+Software Systems
+
+### Preamble
+
 The COVID-19 pandemic has resulted in governments across the world developing contact tracing solutions to monitor and track the spread of the virus. Although smartphone application-based solutions are the most popular, it is not always possible to ensure that a person is carrying their smartphones. Especially in highly mobile environments such as at a manufacturing or storage facility, an easy alternative wearable-based solution is required.
 
-## Objective 
+### Objective
+
 To develop a wearable wristband that can provide contact tracing (proximity sensing) and temperature sensing. Alongside the wristbands, a cloud-based back end will provide pertinent information to administrators, such as areas in a facility/region where social distancing measures are not being maintained, potential outbreak of virus through temperature monitoring.
 
-## Getting started
+## Getting Started
+
 Requirements
 
 - [Node.js](https://nodejs.org/en/) v14.15.4 (LTS)
@@ -30,7 +35,7 @@ Start the frontend development server:
     npm install
     npm start
 
-## Resources 
+## Resources
 
 Created the frontend app using this [repo](https://github.com/facebook/create-react-app)
 
@@ -38,8 +43,9 @@ Frontend components and css from this [repo](https://github.com/creativetimoffic
 
 Created the backend app using this [repo](https://expressjs.com/en/starter/generator.html)
 
-## Frontend 
-- File structure is as follows *to be updated after refactoring*
+## Frontend
+
+- File structure is as follows _(to be updated after refactoring)_
 
 ```
 frontend/
@@ -78,7 +84,9 @@ frontend/
 ```
 
 ## Backend
+
 - File structure is as follows
+
 ```
 backend/
 .
@@ -99,4 +107,6 @@ backend/
     └── temperature.js
 ```
 
-## Hardware 
+## Hardware
+
+- Includes device code, lambda function, and scripts for reference
