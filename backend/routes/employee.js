@@ -6,8 +6,8 @@ var cors = require("cors");
 var router = express.Router();
 
 // GET /v1/api/employee
-// returns all employee readings 
-// GET /v1/api/employee?startTime={startTime}&endTime={endTime} 
+// returns all employee readings
+// GET /v1/api/employee?startTime={startTime}&endTime={endTime}
 // returns employee readings during the specified time range
 router.get("/", cors(), function (req, res) {
   if (req.query.startTime == null && req.query.endTime == null) {
@@ -28,7 +28,7 @@ router.get("/", cors(), function (req, res) {
   }
 });
 
-// GET /v1/api/employee/flag 
+// GET /v1/api/employee/flag
 // query to be fixed
 router.get("/flag", cors(), function (req, res) {
   if (req.query.startTime == null && req.query.endTime == null) {
@@ -51,7 +51,7 @@ router.get("/flag", cors(), function (req, res) {
             EmployeeName: element.EmployeeName,
             Flags: element.Flags,
             ShiftStart: new Date(element.ShiftStart * 1000).toLocaleString(),
-            ShiftEnd: new Date(element.ShiftEnd * 1000).toLocaleString(),            
+            ShiftEnd: new Date(element.ShiftEnd * 1000).toLocaleString(),
           };
         })
       );
@@ -60,9 +60,9 @@ router.get("/flag", cors(), function (req, res) {
 });
 
 // GET /v1/api/employee/{wristId}
-// returns all employee readings 
-// GET /v1/api/employee/{wristId}?startTime={startTime}&endTime={endTime} 
-// returns all employee readings during the specified time range 
+// returns all employee readings
+// GET /v1/api/employee/{wristId}?startTime={startTime}&endTime={endTime}
+// returns all employee readings during the specified time range
 router.get("/:wristId", cors(), function (req, res) {
   if (req.query.time == null) {
     sqlQuery =

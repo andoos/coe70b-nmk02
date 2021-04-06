@@ -5,9 +5,9 @@ var cors = require("cors");
 
 var router = express.Router();
 
-// GET /v1/api/bluetooth 
-// returns all bluetooth events 
-// GET /v1/api/bluetooth?startTime={startTime}&endTime={endTime} 
+// GET /v1/api/bluetooth
+// returns all bluetooth events
+// GET /v1/api/bluetooth?startTime={startTime}&endTime={endTime}
 // returns all bluetooth events during the specified time range
 router.get("/", cors(), function (req, res) {
   if (req.query.startTime == null && req.query.endTime == null) {
@@ -75,13 +75,15 @@ router.get("/graph", cors(), function (req, res) {
   });
 });
 
-// GET /v1/api/bluetooth/{wristId} 
-// returns all bluetooth events 
+// GET /v1/api/bluetooth/{wristId}
+// returns all bluetooth events
 router.get("/:wristId", function (req, res) {
   sqlQuery =
     "SELECT * FROM hardware.BluetoothEvent WHERE Wrist_ID_A='" +
     req.params.wristId +
-    "' OR Wrist_ID_B='" + req.params.wristId + "';";
+    "' OR Wrist_ID_B='" +
+    req.params.wristId +
+    "';";
   db.query(sqlQuery, (err, result) => {
     result;
     res.send(
