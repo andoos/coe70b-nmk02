@@ -43,46 +43,6 @@ Start the frontend development server:
 
 - Created the backend app using this [repo](https://expressjs.com/en/starter/generator.html)
 
-## Frontend
-
-- File structure is as follows _(to be updated after refactoring)_
-
-```
-frontend/
-.
-├── package-lock.json
-├── package.json
-├── public
-│   ├── index.html
-│   ├── manifest.json
-|   └── robots.txt
-└── src
-    ├── App.js
-    ├── index.css
-    ├── index.js
-    ├── assets
-    │   ├── css
-    │   ├── fonts
-    │   ├── images
-    ├── components
-    │   ├── AdminNavBar
-    │   │   └── AdminNavBar.js
-    │   ├── BarGraph
-    │   │   └── BarGraph.js
-    │   ├── DataTable
-    │   │   └── DataTable.js
-    │   ├── LogoutButton
-    │   │   └── LogoutButton.js
-    │   ├── SettingsButton
-    │   │   └── SettingsButton.js
-    │   ├── UpdateButton
-    │   │   └── UpdateButton.js
-    └── views
-        ├── LoginScreen
-        │   └── LoginScreen.js
-        └──  AdminDashboard.js
-```
-
 ## Backend
 
 - File structure is as follows
@@ -126,6 +86,46 @@ backend/
     GET v1/api/temperature
     GET v1/api/temperature?startTime={startTime}&endTime={endTime}
     GET v1/api/temperature/{wristId}
+```
+
+## Frontend
+
+- File structure is as follows _(to be updated after refactoring)_
+
+```
+frontend/
+.
+├── package-lock.json
+├── package.json
+├── public
+│   ├── index.html
+│   ├── manifest.json
+|   └── robots.txt
+└── src
+    ├── App.js
+    ├── index.css
+    ├── index.js
+    ├── assets
+    │   ├── css
+    │   ├── fonts
+    │   ├── images
+    ├── components
+    │   ├── AdminNavBar
+    │   │   └── AdminNavBar.js
+    │   ├── BarGraph
+    │   │   └── BarGraph.js
+    │   ├── DataTable
+    │   │   └── DataTable.js
+    │   ├── LogoutButton
+    │   │   └── LogoutButton.js
+    │   ├── SettingsButton
+    │   │   └── SettingsButton.js
+    │   ├── UpdateButton
+    │   │   └── UpdateButton.js
+    └── views
+        ├── LoginScreen
+        │   └── LoginScreen.js
+        └──  AdminDashboard.js
 ```
 
 ## Hardware
