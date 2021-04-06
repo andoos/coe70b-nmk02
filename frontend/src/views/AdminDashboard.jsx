@@ -48,7 +48,7 @@ function AdminDashboard() {
       </Row>
       <Row>
         <Col>
-          <Recommendation title = "Summary" />
+          <Recommendation title = "Summary" refresh = {isRefreshData} setRefresh = {setIsRefreshData} />
         </Col>
       </Row>
 
