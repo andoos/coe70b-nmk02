@@ -107,23 +107,24 @@ backend/
     └── temperature.js
 ```
 
-- Contains the following APIs 
+- Contains the following APIs _(at some point, remove unused APIs)_
+
 ```
     GET /v1/api/bluetooth
-    GET /v1/api/bluetooth?startTime={startTime}&endTime={endTime} 
+    GET /v1/api/bluetooth?startTime={startTime}&endTime={endTime}
     GET /v1/api/bluetooth/graph?startTime={startTime}&endTime={endTime}
-    GET /v1/api/bluetooth/{wristId} 
+    GET /v1/api/bluetooth/{wristId}
 
     GET /v1/api/credentials
 
     GET /v1/api/employee
-    GET /v1/api/employee?startTime={startTime}&endTime={endTime} 
-    GET /v1/api/employee/flag 
+    GET /v1/api/employee?startTime={startTime}&endTime={endTime}
+    GET /v1/api/employee/flag
     GET /v1/api/employee/{wristId}
-    GET /v1/api/employee/{wristId}?startTime={startTime}&endTime={endTime} 
+    GET /v1/api/employee/{wristId}?startTime={startTime}&endTime={endTime}
 
-    GET v1/api/temperature 
-    GET v1/api/temperature?startTime={startTime}&endTime={endTime} 
+    GET v1/api/temperature
+    GET v1/api/temperature?startTime={startTime}&endTime={endTime}
     GET v1/api/temperature/{wristId}
 ```
 
