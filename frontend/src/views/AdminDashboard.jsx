@@ -27,7 +27,7 @@ function AdminDashboard() {
 
   return (
     <Container fluid>
-      <AdminNavBar setRefresh = {setIsRefreshData}></AdminNavBar>
+      <AdminNavBar refresh = {isRefreshData} setRefresh = {setIsRefreshData}></AdminNavBar>
       <ul></ul>
       
       <Row>

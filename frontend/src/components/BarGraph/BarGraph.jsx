@@ -16,8 +16,12 @@ function BarGraph(props) {
   const [refreshData, setRefreshData] = useState(1);
 
   useEffect(() => {
+    console.log('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW');
+    console.log(props.data);
+    if (refreshData == 1) {
+      getBluetooth();
+    }
     toggleRefresh();
-    getBluetooth();
   }, [refreshData, props.refresh]);
 
   const getBluetooth = async () => {
@@ -48,7 +52,6 @@ function BarGraph(props) {
       props.setRefresh(0);
     }
   };
-
   return (
     <Card className="card-chart">
       <CardHeader>

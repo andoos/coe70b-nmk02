@@ -13,8 +13,10 @@ function Recommendation(props) {
     const [refreshData, setRefreshData] = useState(1);
 
     useEffect(() => {
+      if (refreshData == 1) {
+        getHotspot();
+      }
       toggleRefresh();
-      getHotspot();
     }, [refreshData, props.refresh]);
 
     var today = new Date();
