@@ -55,17 +55,17 @@ router.get("/", cors(), function (req, res, next) {
 
 /* GET count of bluetooth events per hour */
 router.get("/graph", cors(), function (req, res, next) {
-  if (req.query.startTime == null && req.query.endTime == null) {
-    sqlQuery =
-      "SELECT Count(BluetoothEventID) AS Employee, DATE_FORMAT(FROM_UNIXTIME(Timestamp - (4 * 3600)), '%H:00') AS Hour FROM hardware.BluetoothEvent WHERE Timestamp >= 1616158800 AND Timestamp <= 1616202000 GROUP BY HOUR ORDER BY HOUR ASC;";
-  } else {
-    sqlQuery =
-      "SELECT Count(BluetoothEventID) AS Employee, DATE_FORMAT(FROM_UNIXTIME(Timestamp - (4 * 3600)), '%H:00') AS Hour FROM hardware.BluetoothEvent WHERE Timestamp >=" +
-      req.query.startTime +
-      " AND Timestamp <= " +
-      req.query.endTime +
-      " GROUP BY HOUR ORDER BY HOUR ASC";
-  }
+  sqlQuery =
+    "SELECT COUNT(*) AS Employee, t1.Hour FROM" +
+    "(SELECT DISTINCT Wrist_ID_A AS Employee, DATE_FORMAT(FROM_UNIXTIME(Timestamp - (4 * 3600)), '%H:00') AS Hour FROM hardware.BluetoothEvent WHERE Timestamp >= " +
+    req.query.startTime +
+    " AND Timestamp <= " +
+    req.query.endTime +
+    " UNION SELECT DISTINCT Wrist_ID_B AS Employee, DATE_FORMAT(FROM_UNIXTIME(Timestamp - (4 * 3600)), '%H:00') AS Hour FROM hardware.BluetoothEvent WHERE Timestamp >= " +
+    req.query.startTime +
+    " AND Timestamp <= " +
+    req.query.endTime +
+    ") t1 GROUP BY HOUR ORDER BY HOUR ASC;";
   db.query(sqlQuery, (err, result) => {
     res.send(result);
   });
