@@ -54,8 +54,8 @@ router.get("/flag", cors(), function (req, res) {
             //TemperatureEventID: element.TemperatureEventID,
             EmployeeName: element.ename,
             Flags: element.Flags,
-            ShiftStart: new Date(element.ShiftStart * 1000).toLocaleString(),
-            ShiftEnd: new Date(element.ShiftEnd * 1000).toLocaleString(),
+            ShiftStart: new Date(element.shiftstart * 1000).toLocaleString(),
+            ShiftEnd: new Date(element.shiftend * 1000).toLocaleString(),
           };
         })
       );
