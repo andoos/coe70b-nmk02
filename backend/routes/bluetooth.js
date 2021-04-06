@@ -57,10 +57,10 @@ router.get("/", cors(), function (req, res, next) {
 router.get("/graph", cors(), function (req, res, next) {
   if (req.query.startTime == null && req.query.endTime == null) {
     sqlQuery =
-      "SELECT 2 * Count(BluetoothEventID) AS Employee, DATE_FORMAT(FROM_UNIXTIME(Timestamp - (4 * 3600)), '%H:00') AS Hour FROM hardware.BluetoothEvent WHERE Timestamp >= 1616158800 AND Timestamp <= 1616202000 GROUP BY HOUR ORDER BY HOUR ASC;";
+      "SELECT Count(BluetoothEventID) AS Employee, DATE_FORMAT(FROM_UNIXTIME(Timestamp - (4 * 3600)), '%H:00') AS Hour FROM hardware.BluetoothEvent WHERE Timestamp >= 1616158800 AND Timestamp <= 1616202000 GROUP BY HOUR ORDER BY HOUR ASC;";
   } else {
     sqlQuery =
-      "SELECT 2 * Count(BluetoothEventID) AS Employee, DATE_FORMAT(FROM_UNIXTIME(Timestamp - (4 * 3600)), '%H:00') AS Hour FROM hardware.BluetoothEvent WHERE Timestamp >=" +
+      "SELECT Count(BluetoothEventID) AS Employee, DATE_FORMAT(FROM_UNIXTIME(Timestamp - (4 * 3600)), '%H:00') AS Hour FROM hardware.BluetoothEvent WHERE Timestamp >=" +
       req.query.startTime +
       " AND Timestamp <= " +
       req.query.endTime +
