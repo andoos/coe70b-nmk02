@@ -5,9 +5,9 @@ var cors = require("cors");
 
 var router = express.Router();
 
-// GET v1/api/temperature 
-// returns all temperature events 
-// GET v1/api/temperature?startTime={startTime}&endTime={endTime} 
+// GET v1/api/temperature
+// returns all temperature events
+// GET v1/api/temperature?startTime={startTime}&endTime={endTime}
 // returns all temperature events during the specified time range
 router.get("/", cors(), function (req, res) {
   if (req.query.startTime == null && req.query.endTime == null) {
@@ -50,8 +50,8 @@ router.get("/", cors(), function (req, res) {
   }
 });
 
-// GET v1/api/temperature/{wristId} 
-// returns temperature events for a wrist id  
+// GET v1/api/temperature/{wristId}
+// returns temperature events for a wrist id
 router.get("/:wristId", function (req, res) {
   sqlQuery =
     "SELECT * FROM hardware.TemperatureEvent WHERE Wrist_ID='" +
