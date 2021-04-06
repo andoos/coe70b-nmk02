@@ -37,11 +37,11 @@ Start the frontend development server:
 
 ## Resources
 
-Created the frontend app using this [repo](https://github.com/facebook/create-react-app)
+- Created the frontend app using this [repo](https://github.com/facebook/create-react-app)
 
-Frontend components and css from this [repo](https://github.com/creativetimofficial/black-dashboard-react)
+- Frontend components and css from this [repo](https://github.com/creativetimofficial/black-dashboard-react)
 
-Created the backend app using this [repo](https://expressjs.com/en/starter/generator.html)
+- Created the backend app using this [repo](https://expressjs.com/en/starter/generator.html)
 
 ## Frontend
 
@@ -105,6 +105,26 @@ backend/
     ├── credentials.js
     ├── employee.js
     └── temperature.js
+```
+
+- Contains the following APIs 
+```
+    GET /v1/api/bluetooth
+    GET /v1/api/bluetooth?startTime={startTime}&endTime={endTime} 
+    GET /v1/api/bluetooth/graph?startTime={startTime}&endTime={endTime}
+    GET /v1/api/bluetooth/{wristId} 
+
+    GET /v1/api/credentials
+
+    GET /v1/api/employee
+    GET /v1/api/employee?startTime={startTime}&endTime={endTime} 
+    GET /v1/api/employee/flag 
+    GET /v1/api/employee/{wristId}
+    GET /v1/api/employee/{wristId}?startTime={startTime}&endTime={endTime} 
+
+    GET v1/api/temperature 
+    GET v1/api/temperature?startTime={startTime}&endTime={endTime} 
+    GET v1/api/temperature/{wristId}
 ```
 
 ## Hardware
