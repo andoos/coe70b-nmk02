@@ -6,14 +6,17 @@ import { hotspots } from "../BarGraph/BarGraph.jsx";
 //import the flag data to get the names that are above the median count
 
 var employeesNoDistancing = [];
+var med = 0;
 
 function Recommendation(props) {
   const [hotspotData, sethotspotData] = useState(0);
+  const [employeeData, setemployeeData] = useState(0);
   const [refreshData, setRefreshData] = useState(1);
 
   useEffect(() => {
     if (refreshData == 1) {
       getHotspot();
+      getEmployees();
     }
     toggleRefresh();
   }, [refreshData, props.refresh]);
@@ -33,7 +36,7 @@ function Recommendation(props) {
 
   const getHotspot = async () => {
     const response = await fetch(
-      "http://localhost:5000/v1/api/bluetooth/graph?startTime=1616158800&endTime=1616202000"
+      "/v1/api/bluetooth/graph?startTime=1616158800&endTime=1616202000"
     );
     const data = await response.json();
     var hoursNoDistancing = [];
@@ -73,7 +76,7 @@ function Recommendation(props) {
     let lowMiddle = Math.floor((sortedhotspots.length - 1) / 2);
     let highMiddle = Math.ceil((sortedhotspots.length - 1) / 2);
     let median = (sortedhotspots[lowMiddle] + sortedhotspots[highMiddle]) / 2;
-
+    med = median;
     let times = [];
 
     for (var i = 0; i < 24; i++) {
@@ -98,6 +101,48 @@ function Recommendation(props) {
     sethotspotData(strTime);
   };
 
+  // Render Employee Names
+  const renderEmployeeNameData = (employee, index) => {
+    return (employee.EmployeeName);
+  };
+  // Render Employee Flag counts
+  const renderEmployeeFlagsData = (employee, index) => {
+    return (employee.Flags);
+  };
+  // get the Employees that appear in the Flag table, will take the ones who's Flags count is 2 * median hotspot count (obtained in getHotspot)
+  const getEmployees = async () => {
+    const response = await fetch(
+      "/v1/api/employee/flag?startTime=1616158800&endTime=1616202000"
+    );
+    const data = await response.json();
+    console.log(data);
+    
+    let names = data.map(renderEmployeeNameData);
+    let flags = data.map(renderEmployeeFlagsData);
+    console.log(names);
+    console.log(flags);
+    
+    let bademployees = [];
+    // the med*2 is multiplying the median by 2, there's no actual reason for this, pls change this to something that makes more sense if you think of it lol
+    for(var i = 0; i < flags.length; i++) {
+      if(flags[i] > med*2) {
+        bademployees.push(names[i]);
+      }
+    }
+
+    let strEmp = '';
+    for(var j = 0; j < bademployees.length; j++) {
+      if(j == bademployees.length - 1) {
+        strEmp = strEmp + bademployees[j] + '.';
+      }
+      else {
+        strEmp = strEmp + bademployees[j] + ', ';
+      }
+    }
+
+    setemployeeData(strEmp);
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -108,7 +153,7 @@ function Recommendation(props) {
       <CardBody>
         <p>
           The following employees should be sent home until they produce a
-          negative COVID-19 test or quarantine for 14 days:{" "}
+          negative COVID-19 test or quarantine for 14 days: {employeeData}
         </p>
         <p>The following times are hotspots: {hotspotData}</p>
       </CardBody>
