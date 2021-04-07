@@ -1,23 +1,13 @@
 import React, { useState } from "react";
 
-import { Container, Row, Col, CardDeck, CardColumns } from "reactstrap";
+import { Container, Row, Col} from "reactstrap";
 
 import AdminNavBar from "../components/AdminNavBar/AdminNavBar.jsx";
 import DataTable from "../components/DataTable/DataTable.jsx";
 import BarGraph from "../components/BarGraph/BarGraph.jsx";
 import Recommendation from "../components/Recommendation/Recommendation.jsx";
 
-//import "./assets/css/App.css";
-//import BlackDashboardStyles from "./assets/css/black-dashboard-react.css";
-//import NucleoIcons from "./assets/css/nucleo-icons.css";
-
 function AdminDashboard() {
-  const [table, setTable] = useState([
-    { title: "Employees not Social Distancing", header1: "Employee 1", header2: "Employee 2", header3: "Distance (m)", header4: "Duration (mins)"},
-    { title: "Employees with High Temperatures", data: ""},
-    { title: "Employees to be sent home", data: ""},    
-  ])
-
   const [isRefreshData, setIsRefreshData] = useState(0); 
 
   const divStyle = {
@@ -29,7 +19,6 @@ function AdminDashboard() {
     <Container fluid>
       <AdminNavBar refresh = {isRefreshData} setRefresh = {setIsRefreshData}></AdminNavBar>
       <ul></ul>
-      
       <Row>
         <Col>
           <div style={divStyle}><DataTable refresh = {isRefreshData} setRefresh = {setIsRefreshData} title = "Employees not Social Distancing" header1 = "Employee 1" header2 = "Employee 2" header3 = "Distance (m)" header4 = "Time" data = "bluetoothData"/></div>
@@ -51,7 +40,6 @@ function AdminDashboard() {
           <Recommendation title = "Summary" refresh = {isRefreshData} setRefresh = {setIsRefreshData} />
         </Col>
       </Row>
-
     </Container>
   );
 }

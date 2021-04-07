@@ -44,8 +44,6 @@ function DataTable(props) {
   const [refreshData, setRefreshData] = useState(1);
 
   useEffect(() => {
-    console.log('REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE');
-    console.log(props.data);
     if(props.data == 'bluetoothData' && refreshData == 1) {
       getBluetooth();
     }
@@ -56,9 +54,6 @@ function DataTable(props) {
       getFlag();
     }
     toggleRefresh();
-    /*getBluetooth();
-    getTemperature();
-    getFlag();*/
   }, [refreshData, props.refresh]);
 
   const getBluetooth = async () => {

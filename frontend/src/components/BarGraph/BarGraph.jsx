@@ -1,9 +1,8 @@
 import React from "react";
 
 import { Bar } from "react-chartjs-2";
-import { Card, CardBody, CardHeader, CardTitle, Container } from "reactstrap";
+import { Card, CardBody, CardHeader, CardTitle } from "reactstrap";
 
-import { chartExample3 } from "./charts.js";
 import { useEffect, useState } from "react";
 
 var employeesNoDistancing = [];
@@ -13,8 +12,6 @@ function BarGraph(props) {
   const [refreshData, setRefreshData] = useState(1);
 
   useEffect(() => {
-    console.log("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
-    console.log(props.data);
     if (refreshData == 1) {
       getBluetooth();
     }
@@ -172,8 +169,5 @@ function BarGraph(props) {
   );
 }
 
-// module.exports = {
-//   employeesNoDistancing
-// };
 export default BarGraph;
 export const hotspots = employeesNoDistancing;

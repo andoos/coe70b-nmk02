@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Card, CardBody, CardHeader, CardTitle, Table } from "reactstrap";
+import { Card, CardBody, CardHeader, CardTitle} from "reactstrap";
 
 import { hotspots } from "../BarGraph/BarGraph.jsx";
 //import the flag data to get the names that are above the median count
@@ -54,8 +54,6 @@ function Recommendation(props) {
       }
     }
 
-    console.log(employeesNoDistancing);
-    console.log(JSON.stringify(hotspots));
     let unsortedhotspots = [];
     let sortedhotspots = [];
 
@@ -64,42 +62,29 @@ function Recommendation(props) {
       sortedhotspots.push(employeesNoDistancing[i]);
     }
 
-    console.log(unsortedhotspots);
-    //let sortedhotspots = employeesNoDistancing;
     sortedhotspots.sort((a, b) => b - a);
-    console.log(sortedhotspots);
-    console.log(unsortedhotspots);
     for (var j = sortedhotspots.length; j > 0; j--) {
       if (sortedhotspots[j] == 0) {
         sortedhotspots.splice(j, 1);
       }
     }
-    console.log(sortedhotspots);
-    console.log(unsortedhotspots);
 
     // get the median number, the recommendation will recommend times where the count was greater than the median
     let lowMiddle = Math.floor((sortedhotspots.length - 1) / 2);
     let highMiddle = Math.ceil((sortedhotspots.length - 1) / 2);
     let median = (sortedhotspots[lowMiddle] + sortedhotspots[highMiddle]) / 2;
-    console.log(median);
 
     let times = [];
 
-    console.log(unsortedhotspots);
     for (var i = 0; i < 24; i++) {
       if (i == 0) {
         times = [];
       }
       if (unsortedhotspots[i] > median) {
-        console.log(unsortedhotspots[i]);
         var time = i + ":00";
-        console.log(time);
         times.push(time);
       }
     }
-
-    console.log(times);
-    console.log(times.length);
 
     var strTime = "";
 

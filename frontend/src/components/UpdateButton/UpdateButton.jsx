@@ -7,7 +7,7 @@ import UpdateStyles from "./UpdateButton.module.css";
 function UpdateButton(props) {
   const doUpdate = () => {
     console.log("The update button was clicked.");
-    if (props.refresh) {
+    if (props.refresh == 1) {
       props.setRefresh(0);
     } else {
       props.setRefresh(1);
