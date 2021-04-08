@@ -17,6 +17,8 @@ function AdminNavBar(props) {
           </span>
           <div>
             <DateFilter
+              refresh={props.refresh}
+              setRefresh={props.setRefresh}
               selectedDate={props.selectedDate}
               setSelectedDate={props.setSelectedDate}
             />

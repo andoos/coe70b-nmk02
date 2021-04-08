@@ -11,6 +11,7 @@ import DateFilterStyles from "./DateFilter.module.css";
 function DateFilter(props) {
   const changeDate = (selectedDate) => {
     props.setSelectedDate(selectedDate);
+    props.setRefresh(!props.refresh);
   };
 
   const [startDate, setStartDate] = useState(new Date());
