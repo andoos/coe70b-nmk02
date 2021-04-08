@@ -2,16 +2,16 @@ import React, { useState, useRef, useEffect } from "react";
 import loginStyles from "./LoginScreen.module.css";
 import defaultUser from "../../assets/images/defaultUser.png";
 import { Switch, Redirect } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 import { Button } from "reactstrap";
 
 const LoginScreen = (props) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [credentials, setCredentials] = useState(["", ""]);
   const [loginError, setLoginError] = useState(false);
-  const [usernameInput, setUsernameInput] = useState('');
-  const [passwordInput, setPasswordInput] = useState('');
-  
+  const [usernameInput, setUsernameInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+
   const useDidMountEffect = (runFunction, trigger) => {
     const didMount = useRef(false);
 
@@ -22,13 +22,10 @@ const LoginScreen = (props) => {
         didMount.current = true;
       }
     }, trigger);
-  }
+  };
 
   useDidMountEffect(() => {
-    if (
-      usernameInput == credentials[0] &&
-      passwordInput == credentials[1] 
-    ) {
+    if (usernameInput === credentials[0] && passwordInput === credentials[1]) {
       setIsAuthenticated(true);
     } else {
       setLoginError(true);
@@ -36,7 +33,7 @@ const LoginScreen = (props) => {
 
     document.getElementById("username").value = "";
     document.getElementById("password").value = "";
-  }, [credentials])
+  }, [credentials]);
 
   function Authenticate() {
     axios.get("v1/api/credentials").then((response) => {

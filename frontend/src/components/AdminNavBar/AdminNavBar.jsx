@@ -4,7 +4,6 @@ import { Navbar, Container } from "reactstrap";
 
 import UpdateButton from "../UpdateButton/UpdateButton.jsx";
 import LogoutButton from "../LogoutButton/LogoutButton.jsx";
-import SettingsButton from "../SettingsButton/SettingsButton.jsx";
 import DateFilter from "../DateFilter/DateFilter.jsx";
 
 function AdminNavBar(props) {
@@ -22,7 +21,6 @@ function AdminNavBar(props) {
               selectedDate={props.selectedDate}
               setSelectedDate={props.setSelectedDate}
             />
-            <SettingsButton />
             <UpdateButton
               setRefresh={props.setRefresh}
               refresh={props.refresh}

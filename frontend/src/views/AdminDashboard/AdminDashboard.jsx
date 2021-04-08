@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { Container, Row, Col } from "reactstrap";
 
-import dashboardStyles from "./AdminDashboard.module.css";
+import "./AdminDashboard.module.css";
 
 import AdminNavBar from "../../components/AdminNavBar/AdminNavBar.jsx";
 import DataTable from "../../components/DataTable/DataTable.jsx";

@@ -4,8 +4,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 import AdminDashboard from "./views/AdminDashboard/AdminDashboard.jsx";
 
 import "./assets/css/App.css";
-import BlackDashboardStyles from "black-dashboard-react/src/assets/css/black-dashboard-react.css";
-import NucleoIcons from "./assets/css/nucleo-icons.css";
+import "black-dashboard-react/src/assets/css/black-dashboard-react.css";
+import "black-dashboard-react/src/assets/css/nucleo-icons.css";
 
 import LoginScreen from "./views/LoginScreen/LoginScreen.jsx";
 
