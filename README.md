@@ -54,20 +54,20 @@ backend/
 ├── package.json
 ├── app.js
 ├── database.js
-├── bin
+├── bin/
 │   └── www
-├── public
-│   ├── images
-│   ├── javascripts
-|   └── stylesheets
-└── routes
+├── public/
+│   ├── images/
+│   ├── javascripts/
+|   └── stylesheets/
+└── routes/
     ├── bluetooth.js
     ├── credentials.js
     ├── employee.js
     └── temperature.js
 ```
 
-- Contains the following APIs _(at some point, remove unused APIs)_
+- Contains the following APIs _(TODO: remove unused APIs)_
 
 ```
     GET /v1/api/bluetooth
@@ -90,42 +90,53 @@ backend/
 
 ## Frontend
 
-- File structure is as follows _(to be updated after refactoring)_
+- File structure is as follows
 
 ```
 frontend/
 .
 ├── package-lock.json
 ├── package.json
-├── public
+├── public/
 │   ├── index.html
 │   ├── manifest.json
 |   └── robots.txt
-└── src
+└── src/
     ├── App.js
     ├── index.css
     ├── index.js
-    ├── assets
-    │   ├── css
-    │   ├── fonts
-    │   ├── images
-    ├── components
+    ├── assets/
+    │   ├── css/
+    │   ├── fonts/
+    │   ├── images/
+    ├── components/
     │   ├── AdminNavBar
     │   │   └── AdminNavBar.js
     │   ├── BarGraph
     │   │   └── BarGraph.js
     │   ├── DataTable
-    │   │   └── DataTable.js
+    |   |   ├── DataTable.jsx
+    │   ├── DateFilter
+    |   |   ├── DateFilter.jsx
+    │   │   └── DateFilter.module.css
     │   ├── LogoutButton
-    │   │   └── LogoutButton.js
+    |   |   ├── LogoutButton.jsx
+    │   │   └── LogoutButton.module.css
+    │   ├── Recommendation
+    │   │   └── Recommendation.jsx
     │   ├── SettingsButton
-    │   │   └── SettingsButton.js
+    |   |   ├── SettingsButton.jsx
+    │   │   └── SettingsButton.module.css
     │   ├── UpdateButton
-    │   │   └── UpdateButton.js
-    └── views
-        ├── LoginScreen
-        │   └── LoginScreen.js
-        └──  AdminDashboard.js
+    |   |   ├── UpdateButton.jsx
+    │   │   └── UpdateButton.module.css
+    └── views/
+        ├── AdminDashboard
+        │   ├── AdminDashboard.jsx
+        │   └── LoginScreen.module.css
+        └── LoginScreen
+            ├──  LoginScreen.jsx
+            └──  AdminDashboard.module.css
 ```
 
 ## Hardware
