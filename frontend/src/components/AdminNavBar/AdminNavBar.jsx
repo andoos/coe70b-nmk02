@@ -5,6 +5,8 @@ import { Navbar, Container } from "reactstrap";
 import UpdateButton from "../UpdateButton/UpdateButton.jsx";
 import LogoutButton from "../LogoutButton/LogoutButton.jsx";
 import SettingsButton from "../SettingsButton/SettingsButton.jsx";
+import SearchBar from "../SearchBar/SearchBar.jsx";
+
 
 function AdminNavBar(props) {
   return (
@@ -18,11 +20,13 @@ function AdminNavBar(props) {
             <SettingsButton />
             <UpdateButton setRefresh = {props.setRefresh} />
             <LogoutButton />
+            <SearchBar />
           </div>
         </Container>
       </Navbar>
     </div>
   );
 }
+
 
 export default AdminNavBar;
