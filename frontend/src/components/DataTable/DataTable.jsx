@@ -65,7 +65,6 @@ function DataTable(props) {
   const getBluetooth = async () => {
     var startTime, endTime;
     var response;
-    console.log(props.selectedDate);
     if (props.selectedDate) {
       [startTime, endTime] = getEpochForDate(props.selectedDate);
       response = await fetch(
@@ -83,7 +82,6 @@ function DataTable(props) {
   const getTemperature = async () => {
     var startTime, endTime;
     var response;
-    console.log(props.selectedDate);
     if (props.selectedDate) {
       [startTime, endTime] = getEpochForDate(props.selectedDate);
       response = await fetch(
@@ -101,7 +99,6 @@ function DataTable(props) {
   const getFlag = async () => {
     var startTime, endTime;
     var response;
-    console.log(props.selectedDate);
     if (props.selectedDate) {
       [startTime, endTime] = getEpochForDate(props.selectedDate);
       response = await fetch(

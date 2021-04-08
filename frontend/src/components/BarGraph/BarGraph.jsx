@@ -11,6 +11,14 @@ function BarGraph(props) {
   const [bluetoothData, setbluetoothData] = useState([]);
   const [refreshData, setRefreshData] = useState(1);
 
+  // Convert date to epoch
+  function getEpochForDate(date) {
+    const rawDate = new Date(date).toLocaleString().split(",")[0];
+    var startTime = new Date(rawDate + " 00:00:00").getTime() / 1000;
+    var endTime = new Date(rawDate + " 23:59:59").getTime() / 1000;
+    return [startTime, endTime];
+  }
+
   useEffect(() => {
     if (refreshData == 1) {
       getBluetooth();
@@ -19,9 +27,21 @@ function BarGraph(props) {
   }, [refreshData, props.refresh]);
 
   const getBluetooth = async () => {
-    const response = await fetch(
-      "http://localhost:5000/v1/api/bluetooth/graph?startTime=1616158800&endTime=1616202000"
-    );
+    var startTime, endTime;
+    var response;
+    if (props.selectedDate) {
+      [startTime, endTime] = getEpochForDate(props.selectedDate);
+      response = await fetch(
+        "http://localhost:5000/v1/api/bluetooth/graph?startTime=" +
+          startTime +
+          "&endTime=" +
+          endTime
+      );
+    } else {
+      response = await fetch(
+        "http://localhost:5000/v1/api/bluetooth/graph?startTime=1616158800&endTime=1616202000" // Hardcoded for March 19 9AM - 9PM
+      );
+    }
     const data = await response.json();
 
     var hoursNoDistancing = [];

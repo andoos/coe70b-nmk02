@@ -10,9 +10,7 @@ import DateFilterStyles from "./DateFilter.module.css";
 
 function DateFilter(props) {
   const changeDate = (selectedDate) => {
-    //if (props.selectedDate == 0) {
     props.setSelectedDate(selectedDate);
-    //}
   };
 
   const [startDate, setStartDate] = useState(new Date());
@@ -32,7 +30,7 @@ function DateFilter(props) {
       </UncontrolledTooltip>
     </div>
   ));
-  console.log("selectedDate: " + startDate);
+
   return (
     <div className={DateFilterStyles.DateFilter}>
       <DatePicker
