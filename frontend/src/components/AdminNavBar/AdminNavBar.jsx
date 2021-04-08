@@ -5,6 +5,7 @@ import { Navbar, Container } from "reactstrap";
 import UpdateButton from "../UpdateButton/UpdateButton.jsx";
 import LogoutButton from "../LogoutButton/LogoutButton.jsx";
 import SettingsButton from "../SettingsButton/SettingsButton.jsx";
+import DateFilter from "../DateFilter/DateFilter.jsx";
 
 function AdminNavBar(props) {
   return (
@@ -15,8 +16,9 @@ function AdminNavBar(props) {
             Administrator's Dashboard
           </span>
           <div>
+            <DateFilter />
             <SettingsButton />
-            <UpdateButton setRefresh = {props.setRefresh} />
+            <UpdateButton setRefresh={props.setRefresh} />
             <LogoutButton />
           </div>
         </Container>
