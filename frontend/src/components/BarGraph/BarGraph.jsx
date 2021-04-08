@@ -11,6 +11,14 @@ function BarGraph(props) {
   const [bluetoothData, setbluetoothData] = useState([]);
   const [refreshData, setRefreshData] = useState(1);
 
+  // Convert date to epoch
+  function getEpochForDate(date) {
+    const rawDate = new Date(date).toLocaleString().split(",")[0];
+    var startTime = new Date(rawDate + " 00:00:00").getTime() / 1000;
+    var endTime = new Date(rawDate + " 23:59:59").getTime() / 1000;
+    return [startTime, endTime];
+  }
+
   useEffect(() => {
     if (refreshData == 1) {
       getBluetooth();
@@ -19,8 +27,16 @@ function BarGraph(props) {
   }, [refreshData, props.refresh]);
 
   const getBluetooth = async () => {
+    var startTime, endTime;
+    if (props.selectedDate) {
+      [startTime, endTime] = getEpochForDate(props.selectedDate);
+    } else {
+      const today = new Date().toLocaleString().split(",")[0];
+      startTime = new Date(today + " 00:00:00").getTime() / 1000;
+      endTime = new Date(today + " 23:59:59").getTime() / 1000;
+    }
     const response = await fetch(
-      "http://localhost:5000/v1/api/bluetooth/graph?startTime=1616158800&endTime=1616202000"
+      "v1/api/bluetooth/graph?startTime=" + startTime + "&endTime=" + endTime
     );
     const data = await response.json();
 
