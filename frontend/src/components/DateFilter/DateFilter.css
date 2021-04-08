@@ -5,6 +5,7 @@
 .react-datepicker {
   background-color: #1e1e2f;
   border: 1px solid #1d8cf8;
+  margin-left: -41px;
 }
 
 .react-datepicker__header {
@@ -58,4 +59,10 @@
 .react-datepicker__year-text--keyboard-selected {
   background-color: #1d8cf8;
   color: #ffffff;
+}
+
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle, .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle, .react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-year-read-view--down-arrow {
+  margin-left: 85px;
 }
