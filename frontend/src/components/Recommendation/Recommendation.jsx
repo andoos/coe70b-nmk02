@@ -84,7 +84,7 @@ function Recommendation(props) {
 
     sortedhotspots.sort((a, b) => b - a);
     for (var j = sortedhotspots.length; j > 0; j--) {
-      if (sortedhotspots[j] == 0) {
+      if (sortedhotspots[j] === 0) {
         sortedhotspots.splice(j, 1);
       }
     }
@@ -97,7 +97,7 @@ function Recommendation(props) {
     let times = [];
 
     for (var i = 0; i < 24; i++) {
-      if (i == 0) {
+      if (i === 0) {
         times = [];
       }
       if (unsortedhotspots[i] > median) {
@@ -159,7 +159,7 @@ function Recommendation(props) {
 
     let strEmp = "";
     for (var j = 0; j < bademployees.length; j++) {
-      if (j == bademployees.length - 1) {
+      if (j === bademployees.length - 1) {
         strEmp = strEmp + bademployees[j] + ".";
       } else {
         strEmp = strEmp + bademployees[j] + ", ";

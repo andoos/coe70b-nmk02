@@ -34,7 +34,10 @@ function DateFilter(props) {
     <div className={DateFilterStyles.DateFilter}>
       <DatePicker
         selectedDate={startDate}
-        onChange={(date) => (changeDate(date), setStartDate(date))}
+        onChange={(date) => {
+          changeDate(date);
+          setStartDate(date);
+        }}
         customInput={<DateFilterButton />}
       />
     </div>

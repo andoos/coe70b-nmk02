@@ -52,11 +52,11 @@ function DataTable(props) {
   const [refreshData, setRefreshData] = useState(1);
 
   useEffect(() => {
-    if (props.data == "bluetoothData" && refreshData == 1) {
+    if (props.data === "bluetoothData" && refreshData == 1) {
       getBluetooth();
-    } else if (props.data == "temperatureData" && refreshData == 1) {
+    } else if (props.data === "temperatureData" && refreshData == 1) {
       getTemperature();
-    } else if (props.data == "flagData" && refreshData == 1) {
+    } else if (props.data === "flagData" && refreshData == 1) {
       getFlag();
     }
     toggleRefresh();
@@ -132,13 +132,13 @@ function DataTable(props) {
             </tr>
           </thead>
           <tbody>
-            {props.data == "bluetoothData"
+            {props.data === "bluetoothData"
               ? bluetoothData.map(renderbluetoothData)
               : null}
-            {props.data == "temperatureData"
+            {props.data === "temperatureData"
               ? temperatureData.map(rendertemperatureData)
               : null}
-            {props.data == "flagData" ? flagData.map(renderflagData) : null}
+            {props.data === "flagData" ? flagData.map(renderflagData) : null}
           </tbody>
         </Table>
       </CardBody>
