@@ -29,8 +29,7 @@ function Recommendation(props) {
 
   useEffect(() => {
     if (refreshData == 1) {
-      getHotspot();
-      getEmployees();
+      getRecommendation();
     }
     toggleRefresh();
   }, [refreshData, props.refresh]);
@@ -42,6 +41,11 @@ function Recommendation(props) {
       props.setRefresh(0);
     }
   };
+
+  const getRecommendation = async () => {
+    await getHotspot();
+    getEmployees();
+  }
 
   const getHotspot = async () => {
     var startTime, endTime;
