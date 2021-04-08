@@ -11,6 +11,7 @@ import Recommendation from "../../components/Recommendation/Recommendation.jsx";
 
 function AdminDashboard() {
   const [isRefreshData, setIsRefreshData] = useState(0);
+  const [selectedDate, setSelectedDate] = useState(0);
 
   const divStyle = {
     height: "400px",
@@ -24,6 +25,8 @@ function AdminDashboard() {
       <AdminNavBar
         refresh={isRefreshData}
         setRefresh={setIsRefreshData}
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
       ></AdminNavBar>
       <ul></ul>
       <Row>
@@ -32,6 +35,7 @@ function AdminDashboard() {
             <DataTable
               refresh={isRefreshData}
               setRefresh={setIsRefreshData}
+              selectedDate={selectedDate}
               title="Employees not Social Distancing"
               header1="Employee 1"
               header2="Employee 2"

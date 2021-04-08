@@ -37,6 +37,33 @@ const renderflagData = (employee, index) => {
   );
 };
 
+// Convert date to epoch
+function getEpochForDate(date) {
+  console.log("Date is: " + date);
+  const rawDate = new Date(date);
+  var startTime =
+    new Date(
+      rawDate.getFullYear() +
+        "/" +
+        rawDate.getMonth() +
+        "/" +
+        rawDate.getDate +
+        " " +
+        "00:00:00"
+    ).getTime() / 1000;
+  var endTime =
+    new Date(
+      rawDate.getFullYear() +
+        "/" +
+        rawDate.getMonth() +
+        "/" +
+        rawDate.getDate +
+        " " +
+        "23:59:59"
+    ).getTime() / 1000;
+  return [startTime, endTime];
+}
+
 function DataTable(props) {
   const [bluetoothData, setbluetoothData] = useState([]);
   const [temperatureData, settemperatureData] = useState([]);
@@ -44,22 +71,33 @@ function DataTable(props) {
   const [refreshData, setRefreshData] = useState(1);
 
   useEffect(() => {
-    if(props.data == 'bluetoothData' && refreshData == 1) {
+    if (props.data == "bluetoothData" && refreshData == 1) {
       getBluetooth();
-    }
-    else if (props.data == 'temperatureData' && refreshData == 1) {
+    } else if (props.data == "temperatureData" && refreshData == 1) {
       getTemperature();
-    }
-    else if (props.data == 'flagData' && refreshData == 1) {
+    } else if (props.data == "flagData" && refreshData == 1) {
       getFlag();
     }
     toggleRefresh();
   }, [refreshData, props.refresh]);
 
   const getBluetooth = async () => {
-    const response = await fetch(
-      "/v1/api/bluetooth?startTime=1616158800&endTime=1616202000" // Hardcoded for March 15 9AM - 9PM
-    );
+    var startTime, endTime;
+    var response;
+    if (props.selectedDate) {
+      console.log("In getBluetooth");
+      console.log(props.selectedDate);
+      [startTime, endTime] = getEpochForDate(props.selectedDate);
+      console.log("Start Time: " + startTime);
+      console.log("End Time: " + endTime);
+      response = await fetch(
+        "/v1/api/bluetooth?startTime=" + startTime + "&endTime=" + endTime
+      );
+    } else {
+      response = await fetch(
+        "/v1/api/bluetooth?startTime=1616158800&endTime=1616202000" // Hardcoded for March 15 9AM - 9PM
+      );
+    }
     const data = await response.json();
     setbluetoothData(data);
   };
@@ -73,11 +111,11 @@ function DataTable(props) {
   };
 
   const getFlag = async () => {
-      const response = await fetch(
-        "/v1/api/employee/flag?startTime=1616158800&endTime=1616202000"
-      );
-      const data = await response.json();
-      setflagData(data);
+    const response = await fetch(
+      "/v1/api/employee/flag?startTime=1616158800&endTime=1616202000"
+    );
+    const data = await response.json();
+    setflagData(data);
   };
 
   const toggleRefresh = () => {
@@ -108,9 +146,7 @@ function DataTable(props) {
             {props.data == "temperatureData"
               ? temperatureData.map(rendertemperatureData)
               : null}
-            {props.data == "flagData" 
-              ? flagData.map(renderflagData) 
-              : null}
+            {props.data == "flagData" ? flagData.map(renderflagData) : null}
           </tbody>
         </Table>
       </CardBody>

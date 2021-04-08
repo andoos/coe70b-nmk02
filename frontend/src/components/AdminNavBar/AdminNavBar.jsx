@@ -16,9 +16,15 @@ function AdminNavBar(props) {
             Administrator's Dashboard
           </span>
           <div>
-            <DateFilter />
+            <DateFilter
+              selectedDate={props.selectedDate}
+              setSelectedDate={props.setSelectedDate}
+            />
             <SettingsButton />
-            <UpdateButton setRefresh={props.setRefresh} />
+            <UpdateButton
+              setRefresh={props.setRefresh}
+              refresh={props.refresh}
+            />
             <LogoutButton />
           </div>
         </Container>
