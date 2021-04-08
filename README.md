@@ -124,9 +124,6 @@ frontend/
     │   │   └── LogoutButton.module.css
     │   ├── Recommendation
     │   │   └── Recommendation.jsx
-    │   ├── SettingsButton
-    |   |   ├── SettingsButton.jsx
-    │   │   └── SettingsButton.module.css
     │   ├── UpdateButton
     |   |   ├── UpdateButton.jsx
     │   │   └── UpdateButton.module.css
