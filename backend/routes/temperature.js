@@ -30,7 +30,7 @@ router.get("/", cors(), function (req, res) {
       req.query.startTime +
       " AND Timestamp < " +
       req.query.endTime +
-      ") t1 INNER JOIN (SELECT * FROM hardware.Employees WHERE ShiftStart >= " +
+      " AND Temperature > 37.8) t1 INNER JOIN (SELECT * FROM hardware.Employees WHERE ShiftStart >= " +
       req.query.startTime +
       " AND ShiftEnd <= " +
       req.query.endTime +
