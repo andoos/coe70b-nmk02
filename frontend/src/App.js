@@ -5,7 +5,7 @@ import AdminDashboard from "./views/AdminDashboard/AdminDashboard.jsx";
 
 import "./assets/css/App.css";
 import "black-dashboard-react/src/assets/css/black-dashboard-react.css";
-import "./assets/css/nucleo-icons.css";
+import "black-dashboard-react/src/assets/css/nucleo-icons.css";
 
 import LoginScreen from "./views/LoginScreen/LoginScreen.jsx";
 
