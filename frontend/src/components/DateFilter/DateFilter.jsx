@@ -4,9 +4,7 @@ import { Button, UncontrolledTooltip } from "reactstrap";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import DateFilterStyles from "./DateFilter.css";
-
-
+import "./DateFilter.css";
 
 function DateFilter(props) {
   const changeDate = (selectedDate) => {
@@ -33,9 +31,8 @@ function DateFilter(props) {
   ));
 
   return (
-    <div className='DateFilter'>
+    <div className="DateFilter">
       <DatePicker
-
         selectedDate={startDate}
         onChange={(date) => {
           changeDate(date);
