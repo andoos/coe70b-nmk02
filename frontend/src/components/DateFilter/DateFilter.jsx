@@ -10,10 +10,8 @@ import DateFilterStyles from "./DateFilter.module.css";
 
 function DateFilter(props) {
   const changeDate = (selectedDate) => {
-    console.log("Inside change date");
     if (props.selectedDate == 0) {
       props.setSelectedDate(selectedDate);
-      console.log("change");
     }
   };
 
