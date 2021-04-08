@@ -10,14 +10,14 @@ import DateFilterStyles from "./DateFilter.module.css";
 
 function DateFilter(props) {
   const changeDate = (selectedDate) => {
-    if (props.selectedDate == 0) {
-      props.setSelectedDate(selectedDate);
-    }
+    //if (props.selectedDate == 0) {
+    props.setSelectedDate(selectedDate);
+    //}
   };
 
   const [startDate, setStartDate] = useState(new Date());
 
-  const ExampleCustomInput = forwardRef(({ onClick }, ref) => (
+  const DateFilterButton = forwardRef(({ onClick }, ref) => (
     <div id="dateFilter">
       <Button
         className="btn-round btn-icon"
@@ -32,13 +32,13 @@ function DateFilter(props) {
       </UncontrolledTooltip>
     </div>
   ));
-
+  console.log("selectedDate: " + startDate);
   return (
     <div className={DateFilterStyles.DateFilter}>
       <DatePicker
         selectedDate={startDate}
-        onChange={(date) => (setStartDate(date), changeDate(startDate))}
-        customInput={<ExampleCustomInput />}
+        onChange={(date) => (changeDate(date), setStartDate(date))}
+        customInput={<DateFilterButton />}
       />
     </div>
   );

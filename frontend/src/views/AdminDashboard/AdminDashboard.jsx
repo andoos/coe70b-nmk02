@@ -50,6 +50,7 @@ function AdminDashboard() {
             <DataTable
               refresh={isRefreshData}
               setRefresh={setIsRefreshData}
+              selectedDate={selectedDate}
               title="Employees with High Temperatures"
               header1="Employee"
               header2="Temperature (Celsius)"
@@ -63,6 +64,7 @@ function AdminDashboard() {
             <DataTable
               refresh={isRefreshData}
               setRefresh={setIsRefreshData}
+              selectedDate={selectedDate}
               title="Flagged Employees"
               header1="Employee"
               header2="Flags"
@@ -75,7 +77,11 @@ function AdminDashboard() {
       </Row>
       <Row>
         <Col>
-          <BarGraph refresh={isRefreshData} setRefresh={setIsRefreshData} />
+          <BarGraph
+            refresh={isRefreshData}
+            setRefresh={setIsRefreshData}
+            selectedDate={selectedDate}
+          />
         </Col>
       </Row>
       <Row>
@@ -84,6 +90,7 @@ function AdminDashboard() {
             title="Summary"
             refresh={isRefreshData}
             setRefresh={setIsRefreshData}
+            selectedDate={selectedDate}
           />
         </Col>
       </Row>
