@@ -64,51 +64,48 @@ function DataTable(props) {
 
   const getBluetooth = async () => {
     var startTime, endTime;
-    var response;
     if (props.selectedDate) {
       [startTime, endTime] = getEpochForDate(props.selectedDate);
-      response = await fetch(
-        "/v1/api/bluetooth?startTime=" + startTime + "&endTime=" + endTime
-      );
     } else {
-      response = await fetch(
-        "/v1/api/bluetooth?startTime=1616158800&endTime=1616202000" // Hardcoded for March 19 9AM - 9PM
-      );
+      const today = new Date().toLocaleString().split(",")[0];
+      startTime = new Date(today + " 00:00:00").getTime() / 1000;
+      endTime = new Date(today + " 23:59:59").getTime() / 1000;
     }
+    const response = await fetch(
+      "/v1/api/bluetooth?startTime=" + startTime + "&endTime=" + endTime
+    );
     const data = await response.json();
     setbluetoothData(data);
   };
 
   const getTemperature = async () => {
     var startTime, endTime;
-    var response;
     if (props.selectedDate) {
       [startTime, endTime] = getEpochForDate(props.selectedDate);
-      response = await fetch(
-        "/v1/api/temperature?startTime=" + startTime + "&endTime=" + endTime
-      );
     } else {
-      response = await fetch(
-        "/v1/api/temperature?startTime=1616158800&endTime=1616202000" // Hardcoded for March 19 9AM - 9PM
-      );
+      const today = new Date().toLocaleString().split(",")[0];
+      startTime = new Date(today + " 00:00:00").getTime() / 1000;
+      endTime = new Date(today + " 23:59:59").getTime() / 1000;
     }
+    const response = await fetch(
+      "/v1/api/temperature?startTime=" + startTime + "&endTime=" + endTime
+    );
     const data = await response.json();
     settemperatureData(data);
   };
 
   const getFlag = async () => {
     var startTime, endTime;
-    var response;
     if (props.selectedDate) {
       [startTime, endTime] = getEpochForDate(props.selectedDate);
-      response = await fetch(
-        "/v1/api/employee/flag?startTime=" + startTime + "&endTime=" + endTime
-      );
     } else {
-      response = await fetch(
-        "/v1/api/employee/flag?startTime=1616158800&endTime=1616202000" // Hardcoded for March 19 9AM - 9PM
-      );
+      const today = new Date().toLocaleString().split(",")[0];
+      startTime = new Date(today + " 00:00:00").getTime() / 1000;
+      endTime = new Date(today + " 23:59:59").getTime() / 1000;
     }
+    const response = await fetch(
+      "/v1/api/employee/flag?startTime=" + startTime + "&endTime=" + endTime
+    );
     const data = await response.json();
     setflagData(data);
   };

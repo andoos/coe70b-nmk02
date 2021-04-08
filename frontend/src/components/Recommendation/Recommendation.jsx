@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import { Card, CardBody, CardHeader, CardTitle } from "reactstrap";
 
-import { hotspots } from "../BarGraph/BarGraph.jsx";
-//import the flag data to get the names that are above the median count
-
 var employeesNoDistancing = [];
 var med = 0;
 
@@ -48,17 +45,16 @@ function Recommendation(props) {
 
   const getHotspot = async () => {
     var startTime, endTime;
-    var response;
     if (props.selectedDate) {
       [startTime, endTime] = getEpochForDate(props.selectedDate);
-      response = await fetch(
-        "/v1/api/bluetooth/graph?startTime=" + startTime + "&endTime=" + endTime
-      );
     } else {
-      response = await fetch(
-        "/v1/api/bluetooth/graph?startTime=1616158800&endTime=1616202000" // Hardcoded for March 19 9AM - 9PM
-      );
+      const today = new Date().toLocaleString().split(",")[0];
+      startTime = new Date(today + " 00:00:00").getTime() / 1000;
+      endTime = new Date(today + " 23:59:59").getTime() / 1000;
     }
+    const response = await fetch(
+      "/v1/api/bluetooth/graph?startTime=" + startTime + "&endTime=" + endTime
+    );
     const data = await response.json();
     var hoursNoDistancing = [];
     var hoursCounter = 0;
@@ -133,17 +129,18 @@ function Recommendation(props) {
   // get the Employees that appear in the Flag table, will take the ones who's Flags count is 2 * median hotspot count (obtained in getHotspot)
   const getEmployees = async () => {
     var startTime, endTime;
-    var response;
     if (props.selectedDate) {
       [startTime, endTime] = getEpochForDate(props.selectedDate);
-      response = await fetch(
-        "/v1/api/employee/flag?startTime=" + startTime + "&endTime=" + endTime
-      );
     } else {
-      response = await fetch(
-        "/v1/api/employee/flag?startTime=1616158800&endTime=1616202000" // Hardcoded for March 19 9AM - 9PM
-      );
+      const today = new Date().toLocaleString().split(",")[0];
+      startTime = new Date(today + " 00:00:00").getTime() / 1000;
+      endTime = new Date(today + " 23:59:59").getTime() / 1000;
     }
+
+    const response = await fetch(
+      "/v1/api/employee/flag?startTime=" + startTime + "&endTime=" + endTime
+    );
+
     const data = await response.json();
     console.log(data);
 

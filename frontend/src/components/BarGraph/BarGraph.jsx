@@ -28,20 +28,16 @@ function BarGraph(props) {
 
   const getBluetooth = async () => {
     var startTime, endTime;
-    var response;
     if (props.selectedDate) {
       [startTime, endTime] = getEpochForDate(props.selectedDate);
-      response = await fetch(
-        "http://localhost:5000/v1/api/bluetooth/graph?startTime=" +
-          startTime +
-          "&endTime=" +
-          endTime
-      );
     } else {
-      response = await fetch(
-        "http://localhost:5000/v1/api/bluetooth/graph?startTime=1616158800&endTime=1616202000" // Hardcoded for March 19 9AM - 9PM
-      );
+      const today = new Date().toLocaleString().split(",")[0];
+      startTime = new Date(today + " 00:00:00").getTime() / 1000;
+      endTime = new Date(today + " 23:59:59").getTime() / 1000;
     }
+    const response = await fetch(
+      "v1/api/bluetooth/graph?startTime=" + startTime + "&endTime=" + endTime
+    );
     const data = await response.json();
 
     var hoursNoDistancing = [];

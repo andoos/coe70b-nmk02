@@ -1,11 +1,9 @@
 import React, { useState, forwardRef } from "react";
 
 import { Button, UncontrolledTooltip } from "reactstrap";
-
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-
 import DateFilterStyles from "./DateFilter.module.css";
 
 function DateFilter(props) {
