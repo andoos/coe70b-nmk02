@@ -23,3 +23,8 @@
 /frontend/npm-debug.log*
 /frontend/yarn-debug.log*
 /frontend/yarn-error.log*
+
+# hardware 
+/hardware/EspSoftwareSerial
+/hardware/master_reader
+/hardware/bluetoothtesting
