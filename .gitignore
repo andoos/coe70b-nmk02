@@ -25,4 +25,6 @@
 /frontend/yarn-error.log*
 
 # hardware 
-/hardware/EspSoftwareSerial/*
+/hardware/EspSoftwareSerial
+/hardware/master_reader
+/hardware/bluetoothtesting
