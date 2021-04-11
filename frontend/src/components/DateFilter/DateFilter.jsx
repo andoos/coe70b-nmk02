@@ -12,7 +12,7 @@ function DateFilter(props) {
     props.setRefresh(!props.refresh);
   };
 
-  const [startDate, setStartDate] = useState(new Date());
+  const [date, setDate] = useState(new Date());
 
   const DateFilterButton = forwardRef(({ onClick }, ref) => (
     <div id="dateFilter">
@@ -33,10 +33,10 @@ function DateFilter(props) {
   return (
     <div className="DateFilter">
       <DatePicker
-        selectedDate={startDate}
+        selected={date}
         onChange={(date) => {
           changeDate(date);
-          setStartDate(date);
+          setDate(date);
         }}
         customInput={<DateFilterButton />}
       />
