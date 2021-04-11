@@ -1,4 +1,4 @@
-# NMK02: Contact Tracing Wrist Band with Temperature Sensor and Cloud-Based Monitoring
+# [NMK02: Contact Tracing Wrist Band with Temperature Sensor and Cloud-Based Monitoring](https://www.ecb.ryerson.ca/capstone/topics/2020/NMK02.html)
 
 ### FLC
 
@@ -67,25 +67,21 @@ backend/
     └── temperature.js
 ```
 
-- Contains the following APIs _(TODO: remove unused APIs)_
+- Contains the following APIs
 
 ```
     GET /v1/api/bluetooth
     GET /v1/api/bluetooth?startTime={startTime}&endTime={endTime}
     GET /v1/api/bluetooth/graph?startTime={startTime}&endTime={endTime}
-    GET /v1/api/bluetooth/{wristId}
 
     GET /v1/api/credentials
 
     GET /v1/api/employee
     GET /v1/api/employee?startTime={startTime}&endTime={endTime}
-    GET /v1/api/employee/flag
-    GET /v1/api/employee/{wristId}
-    GET /v1/api/employee/{wristId}?startTime={startTime}&endTime={endTime}
+    GET /v1/api/employee/flag?startTime={startTime}&endTime={endTime}
 
     GET v1/api/temperature
     GET v1/api/temperature?startTime={startTime}&endTime={endTime}
-    GET v1/api/temperature/{wristId}
 ```
 
 ## Frontend
@@ -105,33 +101,34 @@ frontend/
     ├── App.js
     ├── index.css
     ├── index.js
+    ├── reportWebVitals.js
     ├── assets/
     │   ├── css/
     │   ├── fonts/
-    │   ├── images/
+    │   └── images/
     ├── components/
-    │   ├── AdminNavBar
+    │   ├── AdminNavBar/
     │   │   └── AdminNavBar.js
-    │   ├── BarGraph
+    │   ├── BarGraph/
     │   │   └── BarGraph.js
-    │   ├── DataTable
+    │   ├── DataTable/
     |   |   ├── DataTable.jsx
-    │   ├── DateFilter
+    │   ├── DateFilter/
     |   |   ├── DateFilter.jsx
     │   │   └── DateFilter.module.css
-    │   ├── LogoutButton
+    │   ├── LogoutButton/
     |   |   ├── LogoutButton.jsx
     │   │   └── LogoutButton.module.css
-    │   ├── Recommendation
+    │   ├── Recommendation/
     │   │   └── Recommendation.jsx
-    │   ├── UpdateButton
-    |   |   ├── UpdateButton.jsx
-    │   │   └── UpdateButton.module.css
+    │   └── UpdateButton/
+    |       ├── UpdateButton.jsx
+    │       └── UpdateButton.module.css
     └── views/
-        ├── AdminDashboard
+        ├── AdminDashboard/
         │   ├── AdminDashboard.jsx
         │   └── LoginScreen.module.css
-        └── LoginScreen
+        └── LoginScreen/
             ├──  LoginScreen.jsx
             └──  AdminDashboard.module.css
 ```
