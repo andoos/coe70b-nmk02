@@ -75,29 +75,4 @@ router.get("/graph", cors(), function (req, res) {
   });
 });
 
-// GET /v1/api/bluetooth/{wristId}
-// returns all bluetooth events
-router.get("/:wristId", function (req, res) {
-  sqlQuery =
-    "SELECT * FROM hardware.BluetoothEvent WHERE Wrist_ID_A='" +
-    req.params.wristId +
-    "' OR Wrist_ID_B='" +
-    req.params.wristId +
-    "';";
-  db.query(sqlQuery, (err, result) => {
-    result;
-    res.send(
-      result.map((element) => {
-        return {
-          BluetoothEventID: element.BluetoothEventID,
-          Distance: element.Distance,
-          Wrist_ID_A: element.Wrist_ID_A,
-          Wrist_ID_B: element.Wrist_ID_B,
-          Timestamp: new Date(element.Timestamp * 1000).toLocaleString(),
-        };
-      })
-    );
-  });
-});
-
 module.exports = router;

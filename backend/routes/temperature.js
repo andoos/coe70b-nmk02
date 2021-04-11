@@ -50,16 +50,4 @@ router.get("/", cors(), function (req, res) {
   }
 });
 
-// GET v1/api/temperature/{wristId}
-// returns temperature events for a wrist id
-router.get("/:wristId", function (req, res) {
-  sqlQuery =
-    "SELECT * FROM hardware.TemperatureEvent WHERE Wrist_ID='" +
-    req.params.wristId +
-    "';";
-  db.query(sqlQuery, (err, result) => {
-    res.send(result);
-  });
-});
-
 module.exports = router;

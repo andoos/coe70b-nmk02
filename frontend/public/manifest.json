@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "NMK02",
+  "name": "COVID-19 Contact Tracing Dashboard",
   "icons": [],
   "start_url": ".",
   "display": "standalone",
