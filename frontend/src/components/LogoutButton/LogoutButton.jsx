@@ -23,7 +23,7 @@ function LogoutButton() {
         <i className="tim-icons icon-upload" />
       </Button>
       <UncontrolledTooltip placement="bottom" target="logout-tip">
-        Log out
+        Log Out
       </UncontrolledTooltip>
       {isLogout ? (
         <Switch>
